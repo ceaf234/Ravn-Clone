@@ -1,0 +1,193 @@
+/**
+ * Services Section Gap Analysis Tests
+ *
+ * Strategic tests to fill critical coverage gaps identified during Task Group 6.
+ * Maximum of 8 additional tests focusing on:
+ * - Service card content verification (all 4 services have correct text)
+ * - Visual regression prevention (key CSS classes present)
+ * - Accessibility audit (heading hierarchy, ARIA attributes complete)
+ * - Full page workflow verification
+ *
+ * Test suite follows minimal test strategy per test-writing.md standards.
+ */
+
+import { describe, it, expect } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
+import App from '../../App';
+import ServicesSection from '../ServicesSection';
+
+describe('Services Section Gap Analysis', () => {
+  /**
+   * Test 1: All 4 services have correct Spanish content
+   * Verifies service card content matches spec requirements
+   */
+  it('all 4 services display correct Spanish title and description content', () => {
+    render(<ServicesSection />);
+
+    // Service 1: Software Development
+    const softwareCard = screen
+      .getByRole('heading', { name: /desarrollo de software/i })
+      .closest('article');
+    expect(softwareCard).toBeInTheDocument();
+    expect(within(softwareCard!).getByText(/escalable y de alto rendimiento/i)).toBeInTheDocument();
+
+    // Service 2: User Experience Design
+    const uxCard = screen
+      .getByRole('heading', { name: /dise[n|ñ]o de experiencia/i })
+      .closest('article');
+    expect(uxCard).toBeInTheDocument();
+    expect(within(uxCard!).getByText(/interfaces intuitivas/i)).toBeInTheDocument();
+
+    // Service 3: AI Integration
+    const aiCard = screen
+      .getByRole('heading', { name: /integraci[o|ó]n de ia/i })
+      .closest('article');
+    expect(aiCard).toBeInTheDocument();
+    expect(within(aiCard!).getByText(/inteligencia artificial/i)).toBeInTheDocument();
+
+    // Service 4: Process Automation
+    const automationCard = screen
+      .getByRole('heading', { name: /automatizaci[o|ó]n de procesos/i })
+      .closest('article');
+    expect(automationCard).toBeInTheDocument();
+    expect(within(automationCard!).getByText(/trabajo manual/i)).toBeInTheDocument();
+  });
+
+  /**
+   * Test 2: Visual regression prevention - key CSS classes for card styling
+   * Verifies essential visual classes are present on service cards
+   */
+  it('service cards have essential visual styling classes for regression prevention', () => {
+    const { container } = render(<ServicesSection />);
+
+    const cards = container.querySelectorAll('article');
+    expect(cards.length).toBe(4);
+
+    cards.forEach((card) => {
+      // Background
+      expect(card).toHaveClass('bg-background-elevated');
+      // Border radius
+      expect(card).toHaveClass('rounded-2xl');
+      // Scale transform base
+      expect(card).toHaveClass('scale-100');
+      // Transition
+      expect(card).toHaveClass('transition-all');
+    });
+  });
+
+  /**
+   * Test 3: Accessibility - complete heading hierarchy within section
+   * Verifies h3 cards are properly nested under h2 section heading
+   */
+  it('section maintains complete heading hierarchy (h2 > h3 structure)', () => {
+    render(<ServicesSection />);
+
+    // Get the section
+    const section = screen.getByRole('region', { name: /productos digitales/i });
+
+    // Get h2 within section
+    const h2 = within(section).getByRole('heading', { level: 2 });
+    expect(h2).toBeInTheDocument();
+
+    // Get all h3 headings within section
+    const h3Headings = within(section).getAllByRole('heading', { level: 3 });
+    expect(h3Headings).toHaveLength(4);
+
+    // Verify each h3 is for a service card
+    const expectedTitles = [
+      /desarrollo de software/i,
+      /dise[n|ñ]o de experiencia/i,
+      /integraci[o|ó]n de ia/i,
+      /automatizaci[o|ó]n de procesos/i,
+    ];
+
+    h3Headings.forEach((h3, index) => {
+      expect(h3).toHaveTextContent(expectedTitles[index]);
+    });
+  });
+
+  /**
+   * Test 4: Container constraint for readability
+   * Verifies max-width container is applied to section content
+   */
+  it('section content has max-width container for readability', () => {
+    const { container } = render(<ServicesSection />);
+
+    // Find the inner container div
+    const innerContainer = container.querySelector('.max-w-6xl');
+    expect(innerContainer).toBeInTheDocument();
+    expect(innerContainer).toHaveClass('mx-auto');
+
+    // Verify grid is inside the container
+    const grid = innerContainer?.querySelector('.grid');
+    expect(grid).toBeInTheDocument();
+  });
+
+  /**
+   * Test 5: Service icons use correct accent color
+   * Verifies all icons are styled with accent-blue for visual interest
+   */
+  it('service icons use accent-blue color class', () => {
+    const { container } = render(<ServicesSection />);
+
+    const icons = container.querySelectorAll('svg');
+    expect(icons.length).toBe(4);
+
+    icons.forEach((icon) => {
+      expect(icon).toHaveClass('text-accent-blue');
+      expect(icon).toHaveClass('h-10');
+      expect(icon).toHaveClass('w-10');
+    });
+  });
+
+  /**
+   * Test 6: Section headline matches spec copy exactly
+   * Verifies the exact Spanish headline text from spec
+   */
+  it('section headline displays exact Spanish copy from spec', () => {
+    render(<ServicesSection />);
+
+    const heading = screen.getByRole('heading', { level: 2 });
+
+    // Verify the full headline text (lowercase as rendered)
+    expect(heading).toHaveTextContent(
+      /dise[n|ñ]amos, construimos y escalamos productos digitales/i
+    );
+    expect(heading).toHaveTextContent(/desde el concepto hasta el lanzamiento/i);
+    expect(heading).toHaveTextContent(/y mas alla/i);
+  });
+
+  /**
+   * Test 7: Full page navigation target verification
+   * Verifies services section is properly targeted by scroll navigation
+   */
+  it('services section is accessible via scroll navigation from hero', () => {
+    render(<App />);
+
+    // Find scroll indicator
+    const scrollLink = screen.getByRole('link', { name: /desplazarse hacia abajo/i });
+    expect(scrollLink).toHaveAttribute('href', '#servicios');
+
+    // Verify target exists and has correct structure
+    const targetSection = document.getElementById('servicios');
+    expect(targetSection).toBeInTheDocument();
+    expect(targetSection?.tagName.toLowerCase()).toBe('section');
+    expect(targetSection).toHaveAttribute('aria-labelledby', 'services-heading');
+
+    // Verify the labelledby heading exists
+    const labelHeading = document.getElementById('services-heading');
+    expect(labelHeading).toBeInTheDocument();
+    expect(labelHeading?.tagName.toLowerCase()).toBe('h2');
+  });
+
+  /**
+   * Test 8: Section background matches page background
+   * Verifies bg-background class for seamless page integration
+   */
+  it('section uses consistent page background', () => {
+    render(<ServicesSection />);
+
+    const section = screen.getByRole('region', { name: /productos digitales/i });
+    expect(section).toHaveClass('bg-background');
+  });
+});
