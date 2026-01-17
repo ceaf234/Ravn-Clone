@@ -28,12 +28,19 @@ describe('ContactSection', () => {
     expect(form).toBeInTheDocument();
   });
 
-  it('has centered layout with max-width constraint', () => {
+  it('has 12-column grid layout with left intro and right form cards', () => {
     render(<ContactSection />);
 
-    // Check for max-w-3xl centered container
-    const centeredContainer = document.querySelector('.max-w-3xl');
-    expect(centeredContainer).toBeInTheDocument();
-    expect(centeredContainer).toHaveClass('mx-auto');
+    // Check for lg:grid-cols-12 on the grid container
+    const gridContainer = document.querySelector('.lg\\:grid-cols-12');
+    expect(gridContainer).toBeInTheDocument();
+
+    // Check for left card (lg:col-span-4)
+    const leftCard = document.querySelector('.lg\\:col-span-4');
+    expect(leftCard).toBeInTheDocument();
+
+    // Check for right card (lg:col-span-8)
+    const rightCard = document.querySelector('.lg\\:col-span-8');
+    expect(rightCard).toBeInTheDocument();
   });
 });

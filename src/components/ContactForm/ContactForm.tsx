@@ -43,11 +43,13 @@ const initialFormData: ContactFormData = {
 
 /** Shared input field styles - compact version */
 const inputBaseStyles =
-  'h-11 w-full rounded-lg border border-border bg-background-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent-gold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold';
+  'h-10 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-white/40 transition-colors focus:border-accent-gold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold';
 
 const inputErrorStyles = 'border-red-500 focus:border-red-500';
 
-const labelStyles = 'mb-1.5 block text-sm font-medium text-text-primary';
+const labelStyles = 'mb-1.5 block text-xs font-medium text-white/70';
+
+const requiredStyles = 'text-white/50';
 
 const errorTextStyles = 'mt-1 text-xs text-red-400';
 
@@ -56,7 +58,7 @@ const errorTextStyles = 'mt-1 text-xs text-red-400';
  * honeypot spam prevention, and Spanish labels and error messages.
  *
  * Features:
- * - 2-column grid layout on desktop, single column on mobile
+ * - 2-column grid layout on sm+, single column on mobile
  * - Custom styled dropdowns matching the site's design
  * - All fields have Spanish labels and validation messages
  * - Honeypot field prevents bot submissions
@@ -156,18 +158,14 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
   };
 
   const cardClasses = showCard
-    ? 'rounded-xl border border-white/10 bg-background-elevated/50 p-6 shadow-lg backdrop-blur-sm md:p-8'
+    ? 'rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 lg:p-10'
     : '';
 
   return (
     <>
       {/* Form Card Container (conditional) */}
       <div className={`${cardClasses} ${className}`.trim()}>
-        <form
-          onSubmit={handleSubmit}
-          noValidate
-          aria-label="Formulario de contacto"
-        >
+        <form onSubmit={handleSubmit} noValidate aria-label="Formulario de contacto">
           {/* Honeypot field - hidden from users, visible to bots */}
           <div className="sr-only" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -182,12 +180,12 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
             />
           </div>
 
-          {/* Form Grid - 2 columns on desktop */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+          {/* Form Grid - 2 columns on sm+ */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* Row 1: Nombre, Correo */}
             <div>
               <label htmlFor="nombre" className={labelStyles}>
-                Nombre <span aria-hidden="true">*</span>
+                Nombre <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="text"
@@ -212,7 +210,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
 
             <div>
               <label htmlFor="correo" className={labelStyles}>
-                Correo electrónico <span aria-hidden="true">*</span>
+                Correo electrónico <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="email"
@@ -236,7 +234,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
             {/* Row 2: Telefono, Empresa */}
             <div>
               <label htmlFor="telefono" className={labelStyles}>
-                Teléfono <span aria-hidden="true">*</span>
+                Teléfono <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="tel"
@@ -259,7 +257,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
 
             <div>
               <label htmlFor="empresa" className={labelStyles}>
-                Empresa <span aria-hidden="true">*</span>
+                Empresa <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="text"
@@ -285,7 +283,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
             {/* Row 3: Servicio, Presupuesto (Custom Dropdowns) */}
             <div>
               <label htmlFor="servicio" className={labelStyles}>
-                ¿Cómo podemos ayudarte? <span aria-hidden="true">*</span>
+                ¿Cómo podemos ayudarte? <span className={requiredStyles}>*</span>
               </label>
               <CustomSelect
                 id="servicio"
@@ -307,7 +305,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
 
             <div>
               <label htmlFor="presupuesto" className={labelStyles}>
-                Presupuesto <span aria-hidden="true">*</span>
+                Presupuesto <span className={requiredStyles}>*</span>
               </label>
               <CustomSelect
                 id="presupuesto"
@@ -328,16 +326,16 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
             </div>
 
             {/* Row 4: Mensaje (Full Width) */}
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2">
               <label htmlFor="mensaje" className={labelStyles}>
-                Cuéntanos sobre tu proyecto <span aria-hidden="true">*</span>
+                Cuéntanos sobre tu proyecto <span className={requiredStyles}>*</span>
               </label>
               <textarea
                 id="mensaje"
                 name="mensaje"
                 value={formData.mensaje}
                 onChange={handleInputChange}
-                className={`${getInputClasses('mensaje')} h-auto min-h-[100px] resize-y`}
+                className={`${getInputClasses('mensaje')} h-auto min-h-[110px] resize-y`}
                 placeholder="Describe brevemente tu proyecto o necesidad..."
                 aria-required="true"
                 aria-invalid={!!errors.mensaje}
@@ -354,11 +352,11 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
             </div>
 
             {/* Row 5: Submit Button (Full Width) */}
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2">
               <Button
                 type="submit"
                 variant="primary"
-                className="w-full"
+                className="h-11 w-full rounded-lg font-semibold uppercase tracking-wide"
                 disabled={isSubmitting}
                 ariaLabel={isSubmitting ? 'Enviando formulario...' : 'Enviar formulario de contacto'}
               >

@@ -2,10 +2,11 @@ import { ContactForm } from '../ContactForm';
 import { Container } from '../layout';
 
 /**
- * ContactSection displays the contact form in a dedicated page section.
+ * ContactSection displays a two-column layout with intro card and contact form.
  * Features:
- * - Centered form card that fits within one screen on desktop
- * - Compact header with eyebrow and headline
+ * - Left column: compact intro card with eyebrow, title, description
+ * - Right column: contact form in a larger card
+ * - 12-column grid (4+8) on desktop, stacked on mobile
  * - Anchor target for #contacto navigation
  *
  * @example
@@ -18,35 +19,41 @@ function ContactSection() {
     <section
       id="contacto"
       aria-labelledby="contact-heading"
-      className="bg-background py-16 md:py-20 lg:py-24"
+      className="w-full scroll-mt-24 bg-background py-16 lg:py-24"
     >
       <Container>
-        {/* Centered content */}
-        <div className="mx-auto max-w-3xl">
-          {/* Section Header - Compact */}
-          <div className="mb-8 text-center">
-            {/* Eyebrow Text */}
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-text-eyebrow">
-              Contacto
-            </p>
+        {/* 12-column grid: 4 cols left, 8 cols right */}
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          {/* Left Intro Card - 4 columns */}
+          <div className="lg:col-span-4">
+            <div className="max-w-md rounded-2xl border border-white/10 bg-white/5 p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] lg:p-10">
+              {/* Eyebrow */}
+              <p className="text-xs font-medium uppercase tracking-[0.35em] text-white/50">
+                Contacto
+              </p>
 
-            {/* Section Headline */}
-            <h2
-              id="contact-heading"
-              className="mb-4 text-2xl font-bold leading-tight text-text-primary md:text-3xl"
-            >
-              Hablemos sobre tu proyecto
-            </h2>
+              {/* Title */}
+              <h2
+                id="contact-heading"
+                className="mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-3xl"
+              >
+                Hablemos sobre tu proyecto
+              </h2>
 
-            {/* Description */}
-            <p className="mx-auto max-w-xl text-sm leading-relaxed text-text-muted md:text-base">
-              Cuéntanos sobre tu negocio y tus objetivos. Te contactaremos para explorar cómo
-              podemos ayudarte.
-            </p>
+              {/* Description */}
+              <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-white/70 sm:text-base">
+                Cuéntanos sobre tu negocio y tus objetivos. Te contactaremos para explorar cómo
+                podemos ayudarte.
+              </p>
+            </div>
           </div>
 
-          {/* Contact Form with card wrapper included */}
-          <ContactForm />
+          {/* Right Form Card - 8 columns */}
+          <div className="lg:col-span-8">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 lg:p-10">
+              <ContactForm showCard={false} />
+            </div>
+          </div>
         </div>
       </Container>
     </section>
