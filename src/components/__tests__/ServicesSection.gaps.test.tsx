@@ -125,16 +125,16 @@ describe('Services Section Gap Analysis', () => {
 
   /**
    * Test 5: Service icons use correct accent color
-   * Verifies all icons are styled with accent-blue for visual interest
+   * Verifies all icons are styled with accent-gold for visual interest
    */
-  it('service icons use accent-blue color class', () => {
+  it('service icons use accent-gold color class', () => {
     const { container } = render(<ServicesSection />);
 
     const icons = container.querySelectorAll('svg');
     expect(icons.length).toBe(4);
 
     icons.forEach((icon) => {
-      expect(icon).toHaveClass('text-accent-blue');
+      expect(icon).toHaveClass('text-accent-gold');
       expect(icon).toHaveClass('h-10');
       expect(icon).toHaveClass('w-10');
     });

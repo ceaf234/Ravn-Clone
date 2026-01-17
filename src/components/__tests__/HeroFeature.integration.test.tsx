@@ -32,16 +32,16 @@ describe('Hero Feature Integration', () => {
     // Logo in header
     expect(screen.getByRole('link', { name: /gravitylabs/i })).toBeInTheDocument();
 
-    // Navigation links in header
-    expect(screen.getByRole('navigation', { name: /navegacion principal/i })).toBeInTheDocument();
+    // Navigation container in header (Container component renders as nav with aria-label)
+    const mainNav = within(header).getByLabelText(/navegacion principal/i);
+    expect(mainNav).toBeInTheDocument();
 
-    // Main headline in hero
+    // Main headline in hero with typewriter text
     const headline = screen.getByRole('heading', { level: 1 });
-    expect(headline).toHaveTextContent(/construimos el futuro de la tecnologia/i);
+    expect(headline).toHaveTextContent(/dise[ñn]amos.*construimos.*escalamos/i);
 
-    // CTA buttons in hero
-    expect(screen.getByRole('link', { name: /iniciar proyecto/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /ver proyectos/i })).toBeInTheDocument();
+    // CTA button in hero
+    expect(screen.getByRole('link', { name: /agenda una llamada/i })).toBeInTheDocument();
   });
 
   /**
@@ -84,38 +84,26 @@ describe('Hero Feature Integration', () => {
   });
 
   /**
-   * Test 4: "futuro" word is highlighted in accent blue color
-   * Gap identified: Core visual requirement from spec not explicitly tested
+   * Test 4: Hero headline uses display font for impact
+   * Gap identified: Core visual requirement for large bold headline
    */
-  it('highlights "futuro" word in accent blue color', () => {
+  it('hero headline uses display font and hero sizing', () => {
     render(<App />);
 
     const headline = screen.getByRole('heading', { level: 1 });
-    // The word "futuro" should be wrapped in a span with accent color
-    const highlightedWord = within(headline).getByText('futuro');
-    expect(highlightedWord).toBeInTheDocument();
-    expect(highlightedWord).toHaveClass('text-accent-blue');
+    expect(headline).toBeInTheDocument();
+    // Verify display font is applied
+    expect(headline).toHaveClass('font-display');
+    // Verify extrabold font weight for impact
+    expect(headline).toHaveClass('font-extrabold');
+    // Verify tight leading for impact
+    expect(headline).toHaveClass('leading-[0.95]');
+    // Verify inline clamp() style for massive responsive scaling
+    expect(headline).toHaveStyle({ fontSize: 'clamp(2.2rem, 5.5vw, 10.5rem)' });
   });
 
   /**
-   * Test 5: Eyebrow text displays correct content
-   * Gap identified: Eyebrow content is critical for branding, only partially tested
-   */
-  it('displays eyebrow text with correct content and styling', () => {
-    render(<App />);
-
-    const heroSection = screen.getByRole('main');
-    const eyebrow = within(heroSection).getByText('Consultoria Tecnologica');
-
-    expect(eyebrow).toBeInTheDocument();
-    // Verify uppercase styling is applied
-    expect(eyebrow).toHaveClass('uppercase');
-    // Verify letter spacing for proper display
-    expect(eyebrow).toHaveClass('tracking-[0.2em]');
-  });
-
-  /**
-   * Test 6: Subheadline displays complete value proposition
+   * Test 5: Subheadline displays value proposition
    * Gap identified: Value proposition copy is critical for conversion
    */
   it('displays subheadline with value proposition text', () => {
@@ -127,10 +115,8 @@ describe('Hero Feature Integration', () => {
     );
 
     expect(subheadline).toBeInTheDocument();
-    // Verify it includes the key phrase about innovation
-    expect(subheadline).toHaveTextContent(/disenamos innovacion/i);
-    // Verify max-width constraint for readability
-    expect(subheadline).toHaveClass('max-w-xl');
+    // Verify max-width constraint for readability (60ch for optimal line length)
+    expect(subheadline).toHaveClass('max-w-[60ch]');
   });
 
   /**

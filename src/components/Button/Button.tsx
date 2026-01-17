@@ -18,16 +18,16 @@ export interface ButtonProps {
   ariaLabel?: string;
 }
 
-/** Base styles shared across all button variants - Meets 44x44px minimum touch target */
+/** Base styles shared across all button variants - Meets 44x44px minimum touch target, scales on large screens */
 const baseStyles =
-  'inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-medium transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-blue';
+  'inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-lg px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.1em] transition-all duration-200 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-gold 2xl:min-h-[52px] 2xl:gap-3 2xl:px-9 2xl:py-4 2xl:text-base 3xl:min-h-[60px] 3xl:px-11 3xl:py-5 4xl:min-h-[68px] 4xl:px-14 4xl:py-6';
 
 /** Variant-specific styles with sufficient color contrast */
 const variantStyles = {
   primary:
-    'bg-white text-background hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-white/50',
+    'bg-[#f5f5f0] text-[#1a1a1a] hover:bg-white focus-visible:ring-2 focus-visible:ring-accent-gold/50',
   secondary:
-    'bg-transparent border border-border text-text-primary hover:border-border-hover hover:bg-white/5 focus-visible:border-accent-blue',
+    'bg-transparent border border-border text-text-primary hover:border-accent-gold hover:text-accent-gold focus-visible:border-accent-gold',
 };
 
 function Button({
@@ -44,7 +44,7 @@ function Button({
   const content = (
     <>
       {children}
-      {Icon && <Icon className="h-5 w-5" aria-hidden="true" />}
+      {Icon && <Icon className="h-5 w-5 2xl:h-6 2xl:w-6 3xl:h-7 3xl:w-7 4xl:h-8 4xl:w-8" aria-hidden="true" />}
     </>
   );
 

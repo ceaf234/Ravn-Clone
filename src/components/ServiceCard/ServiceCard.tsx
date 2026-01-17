@@ -17,10 +17,10 @@ export interface ServiceCardProps {
 /**
  * Base styles for the ServiceCard component
  * - Card background and border styling
- * - Rounded corners and padding
+ * - Rounded corners and padding that scales on large screens
  * - Non-clickable cursor
  */
-const baseStyles = 'bg-background-elevated rounded-2xl p-6 md:p-8 cursor-default';
+const baseStyles = 'bg-background-elevated rounded-2xl p-6 md:p-8 2xl:p-10 3xl:p-12 4xl:p-14 cursor-default 2xl:rounded-3xl';
 
 /**
  * Hover interaction styles
@@ -30,7 +30,7 @@ const baseStyles = 'bg-background-elevated rounded-2xl p-6 md:p-8 cursor-default
  * - GPU acceleration for smooth animations
  */
 const hoverStyles =
-  'scale-100 hover:scale-[1.02] transform-gpu border border-transparent hover:border-accent-blue transition-all duration-300 ease-out';
+  'scale-100 hover:scale-[1.02] transform-gpu border border-transparent hover:border-accent-gold transition-all duration-300 ease-out';
 
 /**
  * Accessibility styles for reduced motion preference
@@ -61,14 +61,14 @@ const motionReduceStyles = 'motion-reduce:transform-none motion-reduce:transitio
 function ServiceCard({ title, description, icon: Icon, className = '' }: ServiceCardProps) {
   return (
     <article className={`${baseStyles} ${hoverStyles} ${motionReduceStyles} ${className}`.trim()}>
-      {/* Icon - Decorative, hidden from assistive technologies */}
-      <Icon className="h-10 w-10 text-accent-blue mb-6" aria-hidden="true" />
+      {/* Icon - Decorative, hidden from assistive technologies, scales on large screens */}
+      <Icon className="h-10 w-10 text-accent-gold mb-6 2xl:h-12 2xl:w-12 2xl:mb-8 3xl:h-14 3xl:w-14 3xl:mb-10 4xl:h-16 4xl:w-16" aria-hidden="true" />
 
-      {/* Title - h3 for proper document outline hierarchy */}
-      <h3 className="font-bold text-text-primary text-xl mb-4">{title}</h3>
+      {/* Title - h3 for proper document outline hierarchy, scales on large screens */}
+      <h3 className="font-bold text-text-primary text-card-title mb-4 2xl:mb-5 3xl:mb-6">{title}</h3>
 
-      {/* Description */}
-      <p className="text-text-muted text-base leading-relaxed">{description}</p>
+      {/* Description - scales on large screens */}
+      <p className="text-text-muted text-card-body leading-relaxed">{description}</p>
     </article>
   );
 }

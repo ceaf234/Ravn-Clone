@@ -64,29 +64,29 @@ function ServicesSection() {
     <section
       id="servicios"
       aria-labelledby="services-heading"
-      className="bg-background px-4 py-section md:px-6 lg:px-8"
+      className="bg-background px-4 py-section md:px-6 lg:px-8 2xl:px-12 3xl:px-16 4xl:px-20"
     >
-      {/* Container with max-width for readability */}
-      <div className="mx-auto max-w-6xl">
+      {/* Container with progressive max-width for large screens */}
+      <div className="mx-auto max-w-6xl 2xl:max-w-[90rem] 3xl:max-w-[108rem] 4xl:max-w-[120rem]">
         {/* Section Header - Using div to avoid implicit banner role conflict */}
-        <div className="mb-12 md:mb-16">
+        <div className="mb-12 md:mb-16 2xl:mb-20 3xl:mb-24 4xl:mb-28">
           {/* Eyebrow Text */}
-          <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow">
+          <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6 3xl:mb-8">
             En Antigravity
           </p>
 
-          {/* Section Headline */}
+          {/* Section Headline - Progressive max-width for readability */}
           <h2
             id="services-heading"
-            className="max-w-3xl text-display-md font-bold leading-[1.1] text-text-primary"
+            className="max-w-3xl text-display-md font-bold leading-[1.1] text-text-primary 2xl:max-w-4xl 3xl:max-w-5xl 4xl:max-w-6xl"
           >
             disenamos, construimos y escalamos productos digitales. Desde el concepto hasta el
             lanzamiento, y mas alla.
           </h2>
         </div>
 
-        {/* Responsive Grid for Service Cards */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Responsive Grid for Service Cards - 4 columns on 2xl+ screens */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 2xl:gap-8 3xl:gap-10 4xl:gap-12">
           {services.map((service) => (
             <ServiceCard
               key={service.title}

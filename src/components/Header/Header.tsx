@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Container } from '../layout';
 
 interface NavLink {
   label: string;
@@ -98,33 +99,34 @@ function Header() {
         role="banner"
         className="fixed left-0 right-0 top-0 z-50 bg-background/80 backdrop-blur-md"
       >
-        <nav
-          className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6 lg:px-8"
+        <Container
+          as="nav"
+          className="flex items-center justify-between py-4 2xl:py-6 3xl:py-8"
           aria-label="Navegacion principal"
         >
-          {/* Logo */}
+          {/* Logo - Scales with viewport, larger on big screens */}
           <a
             href="/"
-            className="text-xl font-bold text-text-primary transition-opacity hover:opacity-80 focus-visible:rounded-sm"
+            className="text-lg font-bold text-text-primary transition-opacity hover:opacity-80 focus-visible:rounded-sm 2xl:text-xl 4xl:text-2xl"
             aria-label="GravityLabs - Ir a inicio"
           >
             GravityLabs
           </a>
 
           {/* Desktop Navigation - Hidden visually on mobile */}
-          <div className="hidden items-center gap-8 md:flex" aria-label="Menu principal">
+          <div className="hidden items-center gap-8 md:flex 2xl:gap-10 3xl:gap-12" aria-label="Menu principal">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-text-muted transition-colors hover:text-text-primary focus-visible:text-text-primary focus-visible:rounded-sm"
+                className="text-nav font-medium text-text-muted transition-colors hover:text-text-primary focus-visible:text-text-primary focus-visible:rounded-sm"
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contacto"
-              className="rounded-full border border-border px-5 py-2 text-sm font-medium text-text-primary transition-colors hover:border-border-hover hover:bg-white/5 focus-visible:border-accent-blue"
+              className="rounded-full border border-border px-5 py-2 text-nav font-medium text-text-primary transition-colors hover:border-accent-gold hover:text-accent-gold focus-visible:border-accent-gold 2xl:px-7 2xl:py-3 3xl:px-8 3xl:py-4"
             >
               Hablemos
             </a>
@@ -143,7 +145,7 @@ function Header() {
           >
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
-        </nav>
+        </Container>
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
@@ -199,7 +201,7 @@ function Header() {
                   ))}
                   <a
                     href="#contacto"
-                    className="mt-4 rounded-full border border-border px-5 py-3 text-center text-lg font-medium text-text-primary transition-colors hover:border-border-hover hover:bg-white/5 focus-visible:border-accent-blue"
+                    className="mt-4 rounded-full border border-border px-5 py-3 text-center text-lg font-medium text-text-primary transition-colors hover:border-accent-gold hover:text-accent-gold focus-visible:border-accent-gold"
                     onClick={closeMenu}
                   >
                     Hablemos

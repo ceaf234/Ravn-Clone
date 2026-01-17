@@ -5,11 +5,12 @@ import Button from './Button';
 
 describe('Button', () => {
   it('renders primary button with correct styles', () => {
-    render(<Button variant="primary">Iniciar Proyecto</Button>);
-    const button = screen.getByRole('button', { name: /iniciar proyecto/i });
+    render(<Button variant="primary">Agenda una llamada</Button>);
+    const button = screen.getByRole('button', { name: /agenda una llamada/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('bg-white');
-    expect(button).toHaveClass('text-background');
+    // Cream/off-white background with dark text
+    expect(button).toHaveClass('bg-[#f5f5f0]');
+    expect(button).toHaveClass('text-[#1a1a1a]');
   });
 
   it('renders secondary button with outline style', () => {
@@ -30,10 +31,10 @@ describe('Button', () => {
   it('renders arrow icon on primary button when provided', () => {
     render(
       <Button variant="primary" icon={ArrowRight}>
-        Iniciar Proyecto
+        Agenda una llamada
       </Button>
     );
-    const button = screen.getByRole('button', { name: /iniciar proyecto/i });
+    const button = screen.getByRole('button', { name: /agenda una llamada/i });
     // Icon should be present and hidden from screen readers
     const icon = button.querySelector('svg');
     expect(icon).toBeInTheDocument();

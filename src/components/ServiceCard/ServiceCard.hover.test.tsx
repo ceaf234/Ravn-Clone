@@ -43,7 +43,7 @@ describe('ServiceCard Hover Interactions', () => {
     expect(card).toHaveClass('border');
     expect(card).toHaveClass('border-transparent');
     // Hover state: accent border color
-    expect(card).toHaveClass('hover:border-accent-blue');
+    expect(card).toHaveClass('hover:border-accent-gold');
   });
 
   /**

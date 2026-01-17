@@ -13,22 +13,20 @@ describe('HeroSection', () => {
     render(<HeroSection />);
     const headline = screen.getByRole('heading', { level: 1 });
     expect(headline).toBeInTheDocument();
-    expect(headline).toHaveTextContent(/construimos el futuro de la tecnologia/i);
+    expect(headline).toHaveTextContent(/dise[ñn]amos.*construimos.*escalamos/i);
   });
 
-  it('renders CTA buttons that are accessible', () => {
+  it('renders CTA button that is accessible', () => {
     render(<HeroSection />);
-    const primaryCTA = screen.getByRole('link', { name: /iniciar proyecto/i });
-    const secondaryCTA = screen.getByRole('link', { name: /ver proyectos/i });
+    const primaryCTA = screen.getByRole('link', { name: /agenda una llamada/i });
     expect(primaryCTA).toBeInTheDocument();
-    expect(secondaryCTA).toBeInTheDocument();
   });
 
-  it('has vertically centered content with flexbox', () => {
+  it('has left-aligned content with flexbox', () => {
     render(<HeroSection />);
     const heroSection = screen.getByRole('main');
     expect(heroSection).toHaveClass('flex');
-    expect(heroSection).toHaveClass('items-center');
+    expect(heroSection).toHaveClass('items-start');
     expect(heroSection).toHaveClass('justify-center');
   });
 });

@@ -32,24 +32,25 @@ describe('Responsive Layout', () => {
 
     render(<App />);
 
-    // Hero section should be present with mobile-first styles
+    // Hero section should be present with dot-wave background
     const heroSection = screen.getByRole('main');
     expect(heroSection).toBeInTheDocument();
-    expect(heroSection).toHaveClass('px-4'); // Mobile padding
+    expect(heroSection).toHaveClass('dot-wave');
+
+    // Container inside hero should have responsive padding
+    const container = heroSection.querySelector('.px-6');
+    expect(container).toBeInTheDocument();
 
     // Headline should be present and readable
     const headline = screen.getByRole('heading', { level: 1 });
     expect(headline).toBeInTheDocument();
 
-    // CTA buttons container should have mobile stacking classes
-    const primaryCTA = screen.getByRole('link', { name: /iniciar proyecto/i });
-    const secondaryCTA = screen.getByRole('link', { name: /ver proyectos/i });
+    // CTA button should have mobile stacking classes
+    const primaryCTA = screen.getByRole('link', { name: /agenda una llamada/i });
     expect(primaryCTA).toBeInTheDocument();
-    expect(secondaryCTA).toBeInTheDocument();
 
-    // Both buttons should have full width on mobile
+    // Button should have full width on mobile
     expect(primaryCTA).toHaveClass('w-full');
-    expect(secondaryCTA).toHaveClass('w-full');
 
     // Mobile menu button should be present
     const mobileMenuButton = screen.getByRole('button', { name: /abrir menu/i });
@@ -66,22 +67,25 @@ describe('Responsive Layout', () => {
 
     render(<App />);
 
-    // Hero section should have desktop padding classes
+    // Hero section should be present with dot-wave background
     const heroSection = screen.getByRole('main');
     expect(heroSection).toBeInTheDocument();
-    // Desktop should have responsive padding classes
-    expect(heroSection).toHaveClass('lg:px-8');
+    expect(heroSection).toHaveClass('dot-wave');
 
-    // Content container should have max-width for readability
-    const contentContainer = heroSection.querySelector('.max-w-4xl');
+    // Container inside hero should have shared layout classes for alignment
+    const container = heroSection.querySelector('.max-w-7xl');
+    expect(container).toBeInTheDocument();
+
+    // Hero content should be full-width for massive headline scaling (no max-width constraint)
+    const contentContainer = heroSection.querySelector('.w-full');
     expect(contentContainer).toBeInTheDocument();
 
     // Desktop navigation should have nav links - verify header banner exists
     const header = screen.getByRole('banner');
     expect(header).toBeInTheDocument();
 
-    // Get the main navigation by aria-label (more specific query to avoid multiple matches)
-    const mainNav = within(header).getByRole('navigation', { name: /navegacion principal/i });
+    // Container is now the nav element with aria-label
+    const mainNav = within(header).getByLabelText(/navegacion principal/i);
     expect(mainNav).toBeInTheDocument();
 
     // Verify desktop nav container has appropriate responsive classes
@@ -89,27 +93,27 @@ describe('Responsive Layout', () => {
     expect(desktopNavContainer).toBeInTheDocument();
 
     // CTA buttons should have responsive width classes
-    const primaryCTA = screen.getByRole('link', { name: /iniciar proyecto/i });
+    const primaryCTA = screen.getByRole('link', { name: /agenda una llamada/i });
     expect(primaryCTA).toHaveClass('sm:w-auto');
   });
 
   it('typography scales appropriately with clamp values', () => {
     render(<App />);
 
-    // Headline should use responsive typography class
+    // Headline should use display font with inline clamp() style for massive scaling
     const headline = screen.getByRole('heading', { level: 1 });
-    expect(headline).toHaveClass('text-display-xl');
+    expect(headline).toHaveClass('font-display');
+    expect(headline).toHaveClass('font-extrabold');
+    // Verify inline style is applied for clamp-based font sizing
+    expect(headline).toHaveStyle({ fontSize: 'clamp(2.2rem, 5.5vw, 10.5rem)' });
 
     // Find the hero section to scope our queries
     const heroSection = screen.getByRole('main');
 
-    // Eyebrow text should use responsive typography (exact match for uppercase text)
-    const eyebrow = within(heroSection).getByText('Consultoria Tecnologica');
-    expect(eyebrow).toHaveClass('text-eyebrow');
-
-    // Body text should use responsive typography
+    // Body text should use responsive typography classes
     const bodyText = within(heroSection).getByText(/transforma ideas ambiciosas/i);
-    expect(bodyText).toHaveClass('text-body-lg');
+    expect(bodyText).toHaveClass('text-sm');
+    expect(bodyText).toHaveClass('sm:text-base');
   });
 
   it('has no horizontal overflow at various viewport widths', () => {
