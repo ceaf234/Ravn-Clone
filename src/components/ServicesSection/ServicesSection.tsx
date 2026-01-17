@@ -1,4 +1,5 @@
 import { Code2, Palette, Brain, Workflow } from 'lucide-react';
+import { DottedWaveBackground } from '../backgrounds';
 import { ServiceCard } from '../ServiceCard';
 
 /**
@@ -61,10 +62,12 @@ const services: ServiceData[] = [
  */
 function ServicesSection() {
   return (
-    <section
+    <DottedWaveBackground
+      as="section"
       id="servicios"
       aria-labelledby="services-heading"
       className="bg-background px-4 py-section md:px-6 lg:px-8 2xl:px-12 3xl:px-16 4xl:px-20"
+      brightnessBoost={1.3}
     >
       {/* Container with progressive max-width for large screens */}
       <div className="mx-auto max-w-6xl 2xl:max-w-[90rem] 3xl:max-w-[108rem] 4xl:max-w-[120rem]">
@@ -97,7 +100,7 @@ function ServicesSection() {
           ))}
         </div>
       </div>
-    </section>
+    </DottedWaveBackground>
   );
 }
 

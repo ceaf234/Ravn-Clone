@@ -1,3 +1,4 @@
+import { DottedWaveBackground } from '../backgrounds';
 import { ContactForm } from '../ContactForm';
 import { Container } from '../layout';
 
@@ -16,10 +17,12 @@ import { Container } from '../layout';
  */
 function ContactSection() {
   return (
-    <section
+    <DottedWaveBackground
+      as="section"
       id="contacto"
       aria-labelledby="contact-heading"
       className="w-full scroll-mt-24 bg-background py-16 lg:py-24"
+      brightnessBoost={1.3}
     >
       <Container>
         {/* 12-column grid: 4 cols left, 8 cols right */}
@@ -56,7 +59,7 @@ function ContactSection() {
           </div>
         </div>
       </Container>
-    </section>
+    </DottedWaveBackground>
   );
 }
 

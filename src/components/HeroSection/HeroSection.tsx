@@ -1,4 +1,5 @@
 import { Button } from '../Button';
+import { DottedWaveBackground } from '../backgrounds';
 import { Container } from '../layout';
 import ScrollIndicator from '../ScrollIndicator';
 import { TypewriterText } from '../TypewriterText';
@@ -10,11 +11,13 @@ export interface HeroSectionProps {
 
 function HeroSection({ onOpenModal }: HeroSectionProps) {
   return (
-    <main
+    <DottedWaveBackground
+      as="main"
       id="main-content"
       role="main"
       aria-labelledby="hero-headline"
-      className="dot-wave relative flex min-h-[85vh] flex-col items-start justify-center overflow-hidden bg-background pt-16 pb-6 lg:min-h-[75vh] lg:pt-20 lg:pb-10"
+      className="flex min-h-[85vh] flex-col items-start justify-center overflow-hidden bg-background pt-16 pb-6 lg:min-h-[75vh] lg:pt-20 lg:pb-10"
+      brightnessBoost={1.3}
     >
       {/* Hero Content - Uses shared Container for alignment with navbar */}
       <Container className="relative z-10">
@@ -65,7 +68,7 @@ function HeroSection({ onOpenModal }: HeroSectionProps) {
 
       {/* Scroll Indicator - Responsive positioning with ARIA label */}
       <ScrollIndicator />
-    </main>
+    </DottedWaveBackground>
   );
 }
 
