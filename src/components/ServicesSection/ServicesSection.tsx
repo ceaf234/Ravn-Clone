@@ -1,4 +1,4 @@
-import { Code2, Palette, Brain, Workflow, TrendingUp } from 'lucide-react';
+import { Code2, Palette, Brain, Workflow, Cpu, ShoppingCart } from 'lucide-react';
 import { DottedWaveBackground } from '../backgrounds';
 import { ServiceCard } from '../ServiceCard';
 
@@ -15,7 +15,7 @@ interface ServiceData {
 }
 
 /**
- * Array of 5 service offerings with Spanish copy
+ * Array of 6 service offerings with Spanish copy
  * Each follows the problem/benefit description pattern
  */
 const services: ServiceData[] = [
@@ -44,15 +44,21 @@ const services: ServiceData[] = [
     icon: Workflow,
   },
   {
-    title: 'Servicios de IPO',
+    title: 'Internet de las Cosas (IoT)',
     description:
-      'Te acompanamos en tu proceso de salida a bolsa con tecnologia, automatizacion y datos confiables para cumplimiento, auditorias e integracion de sistemas.',
-    icon: TrendingUp,
+      'Conectamos dispositivos inteligentes para capturar datos en tiempo real y optimizar tus operaciones con sensores, dashboards y automatizacion.',
+    icon: Cpu,
+  },
+  {
+    title: 'E-commerce y Tiendas en Linea',
+    description:
+      'Creamos tu tienda en linea para que vendas 24/7 con una experiencia de compra rapida, segura y optimizada para conversiones.',
+    icon: ShoppingCart,
   },
 ];
 
 /**
- * ServicesSection displays the company's 5 core service offerings
+ * ServicesSection displays the company's 6 core service offerings
  * in a responsive card-based layout.
  *
  * Features:
