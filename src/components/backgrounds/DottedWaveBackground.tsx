@@ -48,12 +48,12 @@ function DottedWaveBackground({
   role,
 }: DottedWaveBackgroundProps) {
   // Calculate brightness values based on boost
-  // Base wave opacity: 0.30, boosted: 0.30 * brightnessBoost
-  // Capped at 0.60 to keep it tasteful
-  const waveOpacity = Math.min(0.30 * brightnessBoost, 0.60);
-  // Filter brightness: 1.15 base, boosted by the same factor
-  // Capped at 1.8 to prevent glaring
-  const filterBrightness = Math.min(1.15 * brightnessBoost, 1.8);
+  // Base wave opacity: 0.51 (~60% brighter than original 0.30), boosted: 0.51 * brightnessBoost
+  // Capped at 0.85 to keep it tasteful
+  const waveOpacity = Math.min(0.51 * brightnessBoost, 0.85);
+  // Filter brightness: 1.95 base (~70% brighter than original 1.15), boosted by the same factor
+  // Capped at 2.5 to prevent glaring
+  const filterBrightness = Math.min(1.95 * brightnessBoost, 2.5);
 
   const style: CSSProperties = {
     '--dot-wave-opacity': waveOpacity,
