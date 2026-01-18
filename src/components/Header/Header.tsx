@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Container } from '../layout';
@@ -97,7 +98,13 @@ function Header() {
 
       <header
         role="banner"
-        className="fixed left-0 right-0 top-0 z-50 bg-background/80 backdrop-blur-md"
+        className="dot-wave fixed left-0 right-0 top-0 z-50 bg-background"
+        style={
+          {
+            '--dot-wave-opacity': 0.663,
+            '--dot-wave-brightness': 2.535,
+          } as CSSProperties
+        }
       >
         <Container
           as="nav"
