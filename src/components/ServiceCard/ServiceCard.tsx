@@ -16,21 +16,22 @@ export interface ServiceCardProps {
 
 /**
  * Base styles for the ServiceCard component
- * - Card background and border styling
+ * - Glass/transparent background matching Contact section cards
+ * - Subtle border and shadow for depth
  * - Rounded corners and padding that scales on large screens
  * - Non-clickable cursor
  */
-const baseStyles = 'bg-background-elevated rounded-2xl p-6 md:p-8 2xl:p-10 3xl:p-12 4xl:p-14 cursor-default 2xl:rounded-3xl';
+const baseStyles = 'bg-white/5 border border-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] rounded-2xl p-6 md:p-8 2xl:p-10 3xl:p-12 4xl:p-14 cursor-default 2xl:rounded-3xl';
 
 /**
  * Hover interaction styles
  * - Scale transform on hover for subtle growth effect
- * - Border highlight transitioning from transparent to accent color
+ * - Border highlight transitioning to accent color
  * - Smooth transition with ease-out timing
  * - GPU acceleration for smooth animations
  */
 const hoverStyles =
-  'scale-100 hover:scale-[1.02] transform-gpu border border-transparent hover:border-accent-gold transition-all duration-300 ease-out';
+  'scale-100 hover:scale-[1.02] transform-gpu hover:border-accent-gold transition-all duration-300 ease-out';
 
 /**
  * Accessibility styles for reduced motion preference
