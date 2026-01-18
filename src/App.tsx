@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
+import ProjectsSection from './components/ProjectsSection/ProjectsSection';
 import { ContactSection } from './components/ContactSection';
 import { ContactModal } from './components/ContactModal';
 
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <HeroSection onOpenModal={openModal} />
       <ServicesSection />
+      <ProjectsSection />
       <ContactSection />
       <ContactModal isOpen={isModalOpen} onClose={closeModal} />
     </>

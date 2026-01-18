@@ -335,3 +335,30 @@ button:focus-visible {
     text-decoration: underline;
   }
 }
+
+/* Logo Marquee Animation */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 45s linear infinite;
+  width: max-content;
+}
+
+/* Pause animation on hover */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Disable marquee animation for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
