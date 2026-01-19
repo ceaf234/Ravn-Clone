@@ -10,10 +10,9 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Qué hacemos', href: '#servicios' },
+  { label: 'Quiénes somos', href: '#nosotros' },
+  { label: 'Nuestro trabajo', href: '#proyectos' },
 ];
 
 function Header() {
@@ -194,7 +193,7 @@ function Header() {
                   : 'px-5 py-2 text-nav 2xl:px-7 2xl:py-3 3xl:px-8 3xl:py-4'
               }`}
             >
-              Hablemos
+              Contacto
             </a>
           </div>
 
@@ -280,7 +279,7 @@ function Header() {
                     className="mt-4 rounded-full bg-accent-gold px-5 py-3 text-center text-lg font-medium text-[#1a1a1a] transition-colors hover:bg-accent-gold-hover focus-visible:ring-2 focus-visible:ring-accent-gold/50"
                     onClick={closeMenu}
                   >
-                    Hablemos
+                    Contacto
                   </a>
                 </nav>
               </div>
