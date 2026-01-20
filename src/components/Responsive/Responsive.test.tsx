@@ -46,14 +46,14 @@ describe('Responsive Layout', () => {
     expect(headline).toBeInTheDocument();
 
     // CTA button should have mobile stacking classes (renders as button when onOpenModal is provided)
-    const primaryCTA = screen.getByRole('button', { name: /agenda tu llamada/i });
+    const primaryCTA = screen.getByRole('button', { name: /schedule a free consultation/i });
     expect(primaryCTA).toBeInTheDocument();
 
     // Button should have full width on mobile
     expect(primaryCTA).toHaveClass('w-full');
 
     // Mobile menu button should be present
-    const mobileMenuButton = screen.getByRole('button', { name: /abrir menu/i });
+    const mobileMenuButton = screen.getByRole('button', { name: /open.*menu/i });
     expect(mobileMenuButton).toBeInTheDocument();
   });
 
@@ -85,7 +85,7 @@ describe('Responsive Layout', () => {
     expect(header).toBeInTheDocument();
 
     // Container is now the nav element with aria-label
-    const mainNav = within(header).getByLabelText(/navegacion principal/i);
+    const mainNav = within(header).getByLabelText(/main navigation/i);
     expect(mainNav).toBeInTheDocument();
 
     // Verify desktop nav container has appropriate responsive classes
@@ -93,7 +93,7 @@ describe('Responsive Layout', () => {
     expect(desktopNavContainer).toBeInTheDocument();
 
     // CTA buttons should have responsive width classes (renders as button when onOpenModal is provided)
-    const primaryCTA = screen.getByRole('button', { name: /agenda tu llamada/i });
+    const primaryCTA = screen.getByRole('button', { name: /schedule a free consultation/i });
     expect(primaryCTA).toHaveClass('sm:w-auto');
   });
 
@@ -111,7 +111,7 @@ describe('Responsive Layout', () => {
     const heroSection = screen.getByRole('main');
 
     // Body text should use responsive typography classes
-    const bodyText = within(heroSection).getByText(/modernizar y automatizar/i);
+    const bodyText = within(heroSection).getByText(/automate your operations/i);
     expect(bodyText).toHaveClass('text-sm');
     expect(bodyText).toHaveClass('sm:text-base');
   });

@@ -10,20 +10,20 @@ import {
 } from './formValidation';
 
 describe('Form Validation Utilities', () => {
-  it('returns Spanish error message for empty required field', () => {
-    const result = validateRequired('', 'Nombre');
-    expect(result).toBe('Este campo es obligatorio');
+  it('returns English error message for empty required field', () => {
+    const result = validateRequired('', 'Name');
+    expect(result).toBe('This field is required');
 
-    const resultWithValue = validateRequired('Carlos', 'Nombre');
+    const resultWithValue = validateRequired('Carlos', 'Name');
     expect(resultWithValue).toBeNull();
   });
 
   it('validates email format correctly', () => {
     // Invalid emails
-    expect(validateEmail('')).toBe('Por favor ingresa un correo electronico valido');
-    expect(validateEmail('invalid')).toBe('Por favor ingresa un correo electronico valido');
-    expect(validateEmail('invalid@')).toBe('Por favor ingresa un correo electronico valido');
-    expect(validateEmail('@domain.com')).toBe('Por favor ingresa un correo electronico valido');
+    expect(validateEmail('')).toBe('Please enter a valid email address');
+    expect(validateEmail('invalid')).toBe('Please enter a valid email address');
+    expect(validateEmail('invalid@')).toBe('Please enter a valid email address');
+    expect(validateEmail('@domain.com')).toBe('Please enter a valid email address');
 
     // Valid emails
     expect(validateEmail('test@example.com')).toBeNull();
@@ -40,36 +40,36 @@ describe('Form Validation Utilities', () => {
     expect(validatePhone('123-456-7890')).toBeNull();
 
     // Invalid phone formats
-    expect(validatePhone('')).toBe('Por favor ingresa un numero de telefono valido');
-    expect(validatePhone('abc123')).toBe('Por favor ingresa un numero de telefono valido');
-    expect(validatePhone('phone: 123')).toBe('Por favor ingresa un numero de telefono valido');
+    expect(validatePhone('')).toBe('Please enter a valid phone number');
+    expect(validatePhone('abc123')).toBe('Please enter a valid phone number');
+    expect(validatePhone('phone: 123')).toBe('Please enter a valid phone number');
   });
 
-  it('validates minLength and maxLength with Spanish messages', () => {
+  it('validates minLength and maxLength with English messages', () => {
     // minLength validation
-    expect(validateMinLength('A', 2, 'Nombre')).toBe(
-      'El campo Nombre debe tener al menos 2 caracteres'
+    expect(validateMinLength('A', 2, 'Name')).toBe(
+      'The Name field must be at least 2 characters'
     );
-    expect(validateMinLength('AB', 2, 'Nombre')).toBeNull();
-    expect(validateMinLength('ABC', 2, 'Nombre')).toBeNull();
+    expect(validateMinLength('AB', 2, 'Name')).toBeNull();
+    expect(validateMinLength('ABC', 2, 'Name')).toBeNull();
 
     // maxLength validation
-    expect(validateMaxLength('A'.repeat(101), 100, 'Nombre')).toBe(
-      'El campo Nombre no puede exceder 100 caracteres'
+    expect(validateMaxLength('A'.repeat(101), 100, 'Name')).toBe(
+      'The Name field cannot exceed 100 characters'
     );
-    expect(validateMaxLength('A'.repeat(100), 100, 'Nombre')).toBeNull();
-    expect(validateMaxLength('A'.repeat(50), 100, 'Nombre')).toBeNull();
+    expect(validateMaxLength('A'.repeat(100), 100, 'Name')).toBeNull();
+    expect(validateMaxLength('A'.repeat(50), 100, 'Name')).toBeNull();
   });
 
   it('validates entire form and returns all errors', () => {
     const emptyForm: ContactFormData = {
-      nombre: '',
-      telefono: '',
-      correo: '',
-      empresa: '',
-      servicio: '',
-      presupuesto: '',
-      mensaje: '',
+      name: '',
+      phone: '',
+      email: '',
+      company: '',
+      service: '',
+      budget: '',
+      message: '',
     };
 
     const result = validateContactForm(emptyForm);
@@ -78,19 +78,19 @@ describe('Form Validation Utilities', () => {
 
     // Check that multiple fields have errors
     const fieldNames = result.errors.map((e) => e.field);
-    expect(fieldNames).toContain('nombre');
-    expect(fieldNames).toContain('correo');
-    expect(fieldNames).toContain('telefono');
+    expect(fieldNames).toContain('name');
+    expect(fieldNames).toContain('email');
+    expect(fieldNames).toContain('phone');
 
     // Valid form
     const validForm: ContactFormData = {
-      nombre: 'Carlos Alvarez',
-      telefono: '1234 5678',
-      correo: 'carlos@example.com',
-      empresa: 'Mi Empresa S.A.',
-      servicio: 'Desarrollo de Software',
-      presupuesto: '$1,000-$5,000',
-      mensaje: 'Este es un mensaje de prueba con mas de veinte caracteres.',
+      name: 'Carlos Alvarez',
+      phone: '1234 5678',
+      email: 'carlos@example.com',
+      company: 'My Company Inc.',
+      service: 'Software Development',
+      budget: '$1,000-$5,000',
+      message: 'This is a test message with more than twenty characters.',
     };
 
     const validResult = validateContactForm(validForm);

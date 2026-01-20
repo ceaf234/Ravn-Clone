@@ -4,7 +4,7 @@
  * Tests verify critical functionality for the Services Section:
  * - Semantic HTML structure with section element
  * - Proper heading hierarchy (h2)
- * - All 4 service cards render correctly
+ * - All 6 service cards render correctly
  * - Accessibility via aria-labelledby
  * - Correct Lucide icons for each service
  */
@@ -21,7 +21,7 @@ describe('ServicesSection', () => {
     render(<ServicesSection />);
 
     // Section is labelled by its h2 heading content
-    const section = screen.getByRole('region', { name: /productos digitales/i });
+    const section = screen.getByRole('region', { name: /custom solutions/i });
     expect(section).toBeInTheDocument();
     expect(section.tagName.toLowerCase()).toBe('section');
     expect(section).toHaveAttribute('id', 'servicios');
@@ -35,26 +35,24 @@ describe('ServicesSection', () => {
 
     const heading = screen.getByRole('heading', { level: 2 });
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent(/productos digitales/i);
+    expect(heading).toHaveTextContent(/custom solutions/i);
   });
 
   /**
-   * Test 3: All 4 service cards are rendered
+   * Test 3: All 6 service cards are rendered
    */
-  it('renders all 4 service cards', () => {
+  it('renders all 6 service cards', () => {
     render(<ServicesSection />);
 
     // Find all article elements (ServiceCard uses article)
     const cards = screen.getAllByRole('article');
-    expect(cards).toHaveLength(4);
+    expect(cards).toHaveLength(6);
 
     // Verify each service title is present
-    expect(screen.getByRole('heading', { name: /desarrollo de software/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /dise[n|ñ]o de experiencia/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /integraci[o|ó]n de ia/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /automatizaci[o|ó]n de procesos/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /websites that sell/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /process automation/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /online stores/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /applied artificial intelligence/i })).toBeInTheDocument();
   });
 
   /**
@@ -81,8 +79,8 @@ describe('ServicesSection', () => {
     // Find all SVG elements within the container (Lucide icons render as SVG)
     const icons = container.querySelectorAll('svg[aria-hidden="true"]');
 
-    // Each of the 4 cards should have an icon with aria-hidden
-    expect(icons.length).toBe(4);
+    // Each of the 6 cards should have an icon with aria-hidden
+    expect(icons.length).toBe(6);
 
     // Verify each icon has the correct classes (Lucide icon class pattern)
     icons.forEach((icon) => {
@@ -97,7 +95,7 @@ describe('ServicesSection', () => {
   it('displays eyebrow text with correct content', () => {
     render(<ServicesSection />);
 
-    const eyebrow = screen.getByText('En Antigravity');
+    const eyebrow = screen.getByText('At GravityLabs');
     expect(eyebrow).toBeInTheDocument();
     expect(eyebrow).toHaveClass('uppercase');
     expect(eyebrow).toHaveClass('tracking-[0.2em]');

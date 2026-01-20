@@ -60,8 +60,8 @@ describe('ServicesSection Responsive Layout', () => {
   it('applies responsive padding classes to the section', () => {
     render(<ServicesSection />);
 
-    // Get the section element
-    const section = screen.getByRole('region', { name: /productos digitales/i });
+    // Get the section element by role region with English aria-labelledby text
+    const section = screen.getByRole('region', { name: /custom solutions/i });
 
     // Verify mobile padding (base)
     expect(section).toHaveClass('px-4');
@@ -103,7 +103,7 @@ describe('ServicesSection Responsive Layout', () => {
 
     // Get all service cards (article elements)
     const cards = container.querySelectorAll('article');
-    expect(cards.length).toBe(4);
+    expect(cards.length).toBe(6);
 
     // Each card should have responsive padding classes
     cards.forEach((card) => {

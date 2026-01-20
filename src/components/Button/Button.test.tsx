@@ -5,20 +5,20 @@ import Button from './Button';
 
 describe('Button', () => {
   it('renders primary button with correct styles', () => {
-    render(<Button variant="primary">Agenda una llamada</Button>);
-    const button = screen.getByRole('button', { name: /agenda una llamada/i });
+    render(<Button variant="primary">Schedule a Call</Button>);
+    const button = screen.getByRole('button', { name: /schedule a call/i });
     expect(button).toBeInTheDocument();
-    // Cream/off-white background with dark text
-    expect(button).toHaveClass('bg-[#f5f5f0]');
+    // Gold background with dark text
+    expect(button).toHaveClass('bg-accent-gold');
     expect(button).toHaveClass('text-[#1a1a1a]');
   });
 
   it('renders secondary button with outline style', () => {
-    render(<Button variant="secondary">Ver Proyectos</Button>);
-    const button = screen.getByRole('button', { name: /ver proyectos/i });
+    render(<Button variant="secondary">View Projects</Button>);
+    const button = screen.getByRole('button', { name: /view projects/i });
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass('border');
-    expect(button).toHaveClass('bg-transparent');
+    expect(button).toHaveClass('bg-white');
   });
 
   it('meets minimum touch target size of 44x44px', () => {
@@ -31,10 +31,10 @@ describe('Button', () => {
   it('renders arrow icon on primary button when provided', () => {
     render(
       <Button variant="primary" icon={ArrowRight}>
-        Agenda una llamada
+        Schedule a Call
       </Button>
     );
-    const button = screen.getByRole('button', { name: /agenda una llamada/i });
+    const button = screen.getByRole('button', { name: /schedule a call/i });
     // Icon should be present and hidden from screen readers
     const icon = button.querySelector('svg');
     expect(icon).toBeInTheDocument();

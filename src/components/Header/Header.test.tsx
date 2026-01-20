@@ -13,18 +13,17 @@ describe('Header', () => {
 
   it('renders all navigation links', () => {
     render(<Header />);
-    expect(screen.getByRole('link', { name: /servicios/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /nosotros/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /proyectos/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /contacto/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /hablemos/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /what we do/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /who we are/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /our work/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: /contact/i }).length).toBeGreaterThan(0);
   });
 
   it('toggles mobile menu when hamburger button is clicked', async () => {
     const user = userEvent.setup();
     render(<Header />);
 
-    const menuButton = screen.getByRole('button', { name: /abrir menu/i });
+    const menuButton = screen.getByRole('button', { name: /open.*menu/i });
     expect(menuButton).toBeInTheDocument();
 
     // Menu should be closed initially
@@ -35,7 +34,7 @@ describe('Header', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
 
     // Close menu
-    const closeButton = screen.getByRole('button', { name: /cerrar menu/i });
+    const closeButton = screen.getByRole('button', { name: /close.*menu/i });
     await user.click(closeButton);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
@@ -46,7 +45,7 @@ describe('Header', () => {
 
     // First tab should focus skip link
     await user.tab();
-    expect(screen.getByRole('link', { name: /saltar al contenido/i })).toHaveFocus();
+    expect(screen.getByRole('link', { name: /skip to main content/i })).toHaveFocus();
 
     // Second tab should focus logo
     await user.tab();
@@ -54,6 +53,6 @@ describe('Header', () => {
 
     // Third tab should focus first nav link
     await user.tab();
-    expect(screen.getByRole('link', { name: /servicios/i })).toHaveFocus();
+    expect(screen.getByRole('link', { name: /what we do/i })).toHaveFocus();
   });
 });

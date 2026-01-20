@@ -12,7 +12,6 @@ import { PersonPlaceholder } from '../PersonPlaceholder';
  * - Person placeholder icon in glass container on right
  * - Two-column layout on desktop, stacked on mobile
  * - Anchor target for #nosotros navigation
- * - Spanish copy for Guatemalan SMBs
  *
  * @example
  * ```tsx
@@ -36,7 +35,7 @@ function SloganSection() {
             <div className="p-8 md:p-10 lg:p-12 2xl:p-14 3xl:p-16">
               {/* Eyebrow */}
               <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6">
-                En Gravity Labs
+                At Gravity Labs
               </p>
 
               {/* Headline - subtle text shadow for readability */}
@@ -45,13 +44,13 @@ function SloganSection() {
                 className="mb-4 text-display-md font-bold leading-[1.1] text-text-primary md:mb-6 2xl:mb-8"
                 style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
               >
-                Un equipo pequeño que entrega como uno grande.
+                A small team that delivers like a big one.
               </h2>
 
               {/* Subheadline */}
               <p className="mb-6 max-w-[50ch] text-card-body leading-relaxed text-text-muted md:mb-8 2xl:mb-10">
-                No tienes que ser experto en software. Nosotros nos encargamos de lo técnico, tú te
-                enfocas en tu negocio.
+                You don't have to be a software expert. We handle the technical side, you focus on
+                your business.
               </p>
 
               {/* Micro CTA Link */}
@@ -59,7 +58,7 @@ function SloganSection() {
                 href="#equipo"
                 className="inline-flex items-center text-sm font-medium text-accent-gold transition-colors hover:text-accent-gold-hover focus-visible:rounded-sm 2xl:text-base"
               >
-                Conoce al equipo
+                Meet the team
                 <span className="ml-1" aria-hidden="true">
                   →
                 </span>

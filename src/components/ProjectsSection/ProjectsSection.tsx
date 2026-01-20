@@ -32,7 +32,7 @@ function ProjectsSection() {
         <div className="mb-12 text-left md:mb-16 2xl:mb-20">
           {/* Eyebrow Text */}
           <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6">
-            Proyectos
+            Projects
           </p>
 
           {/* Section Headline */}
@@ -40,7 +40,7 @@ function ProjectsSection() {
             id="projects-heading"
             className="max-w-3xl text-display-md font-bold leading-[1.1] text-text-primary 2xl:max-w-4xl"
           >
-            Empresas que han confiado en nosotros
+            Companies that have trusted us
           </h2>
         </div>
 

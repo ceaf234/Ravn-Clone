@@ -41,7 +41,7 @@ function StaticLogoGrid() {
     <div
       className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-8"
       role="list"
-      aria-label="Logos de empresas placeholder"
+      aria-label="Placeholder company logos"
     >
       {placeholderLogos.map((logo) => (
         <div key={logo.name} role="listitem">
@@ -104,7 +104,7 @@ function LogoMarquee({ className = '' }: LogoMarqueeProps) {
       <div
         className="marquee-container relative overflow-hidden motion-reduce:hidden"
         role="region"
-        aria-label="Carrusel de logos de empresas placeholder"
+        aria-label="Placeholder company logo carousel"
       >
         {/* Fade masks for smooth edge transitions */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-background to-transparent md:w-32 lg:w-40 2xl:w-48" />

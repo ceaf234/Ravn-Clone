@@ -15,12 +15,12 @@ describe('ContactForm Gap Analysis Tests', () => {
     render(<ContactForm />);
 
     // Click submit without filling any fields
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     await waitFor(() => {
       // Should show multiple errors at once
-      const errors = screen.getAllByText(/este campo es obligatorio/i);
+      const errors = screen.getAllByText(/this field is required/i);
       expect(errors.length).toBeGreaterThan(1);
     });
   });
@@ -30,19 +30,19 @@ describe('ContactForm Gap Analysis Tests', () => {
     render(<ContactForm />);
 
     // Fill in some fields but not all
-    const nombreInput = screen.getByRole('textbox', { name: /nombre/i });
-    await user.type(nombreInput, 'Carlos Alvarez');
+    const nameInput = screen.getByRole('textbox', { name: /name/i });
+    await user.type(nameInput, 'Carlos Alvarez');
 
-    const telefonoInput = screen.getByRole('textbox', { name: /tel[eé]fono/i });
-    await user.type(telefonoInput, '1234 5678');
+    const phoneInput = screen.getByRole('textbox', { name: /phone/i });
+    await user.type(phoneInput, '1234 5678');
 
     // Submit (will fail validation because not all fields are filled)
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     // Data should be preserved
-    expect(nombreInput).toHaveValue('Carlos Alvarez');
-    expect(telefonoInput).toHaveValue('1234 5678');
+    expect(nameInput).toHaveValue('Carlos Alvarez');
+    expect(phoneInput).toHaveValue('1234 5678');
   });
 
   it('completes full modal + form submission + toast flow', async () => {
@@ -50,7 +50,7 @@ describe('ContactForm Gap Analysis Tests', () => {
     render(<App />);
 
     // Open modal via CTA button
-    const ctaButton = screen.getByRole('button', { name: /agenda tu llamada/i });
+    const ctaButton = screen.getByRole('button', { name: /schedule a free consultation/i });
     await user.click(ctaButton);
 
     // Modal should be open
@@ -72,7 +72,7 @@ describe('ContactForm Gap Analysis Tests', () => {
     expect(modal).toHaveAttribute('aria-labelledby', 'modal-title');
 
     // Verify close button works
-    const closeButton = screen.getByRole('button', { name: /cerrar/i });
+    const closeButton = screen.getByRole('button', { name: /close/i });
     expect(closeButton).toBeInTheDocument();
   });
 
@@ -89,19 +89,19 @@ describe('ContactForm Gap Analysis Tests', () => {
     render(<ContactForm />);
 
     // Submit to trigger errors
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getAllByText(/este campo es obligatorio/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/this field is required/i).length).toBeGreaterThan(0);
     });
 
-    // Start typing in nombre field
-    const nombreInput = screen.getByRole('textbox', { name: /nombre/i });
-    await user.type(nombreInput, 'Carlos');
+    // Start typing in name field
+    const nameInput = screen.getByRole('textbox', { name: /name/i });
+    await user.type(nameInput, 'Carlos');
 
-    // The specific error for nombre should be cleared
-    // (check that nombre field no longer has aria-invalid=true)
-    expect(nombreInput).toHaveAttribute('aria-invalid', 'false');
+    // The specific error for name should be cleared
+    // (check that name field no longer has aria-invalid=true)
+    expect(nameInput).toHaveAttribute('aria-invalid', 'false');
   });
 });

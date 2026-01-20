@@ -3,7 +3,7 @@
  *
  * Strategic tests to fill critical coverage gaps identified during Task Group 6.
  * Maximum of 8 additional tests focusing on:
- * - Service card content verification (all 4 services have correct text)
+ * - Service card content verification (all 6 services have correct text)
  * - Visual regression prevention (key CSS classes present)
  * - Accessibility audit (heading hierarchy, ARIA attributes complete)
  * - Full page workflow verification
@@ -18,39 +18,39 @@ import ServicesSection from '../ServicesSection';
 
 describe('Services Section Gap Analysis', () => {
   /**
-   * Test 1: All 4 services have correct Spanish content
+   * Test 1: All 6 services have correct English content
    * Verifies service card content matches spec requirements
    */
-  it('all 4 services display correct Spanish title and description content', () => {
+  it('all 6 services display correct English title and description content', () => {
     render(<ServicesSection />);
 
-    // Service 1: Software Development
-    const softwareCard = screen
-      .getByRole('heading', { name: /desarrollo de software/i })
+    // Service 1: Websites That Sell
+    const websitesCard = screen
+      .getByRole('heading', { name: /websites that sell/i })
       .closest('article');
-    expect(softwareCard).toBeInTheDocument();
-    expect(within(softwareCard!).getByText(/escalable y de alto rendimiento/i)).toBeInTheDocument();
+    expect(websitesCard).toBeInTheDocument();
+    expect(within(websitesCard!).getByText(/digital presence/i)).toBeInTheDocument();
 
-    // Service 2: User Experience Design
-    const uxCard = screen
-      .getByRole('heading', { name: /dise[n|ñ]o de experiencia/i })
-      .closest('article');
-    expect(uxCard).toBeInTheDocument();
-    expect(within(uxCard!).getByText(/interfaces intuitivas/i)).toBeInTheDocument();
-
-    // Service 3: AI Integration
-    const aiCard = screen
-      .getByRole('heading', { name: /integraci[o|ó]n de ia/i })
-      .closest('article');
-    expect(aiCard).toBeInTheDocument();
-    expect(within(aiCard!).getByText(/inteligencia artificial/i)).toBeInTheDocument();
-
-    // Service 4: Process Automation
+    // Service 2: Process Automation
     const automationCard = screen
-      .getByRole('heading', { name: /automatizaci[o|ó]n de procesos/i })
+      .getByRole('heading', { name: /process automation/i })
       .closest('article');
     expect(automationCard).toBeInTheDocument();
-    expect(within(automationCard!).getByText(/trabajo manual/i)).toBeInTheDocument();
+    expect(within(automationCard!).getByText(/repetitive work/i)).toBeInTheDocument();
+
+    // Service 3: Online Stores
+    const storesCard = screen
+      .getByRole('heading', { name: /online stores/i })
+      .closest('article');
+    expect(storesCard).toBeInTheDocument();
+    expect(within(storesCard!).getByText(/24\/7/i)).toBeInTheDocument();
+
+    // Service 4: Applied AI
+    const aiCard = screen
+      .getByRole('heading', { name: /applied artificial intelligence/i })
+      .closest('article');
+    expect(aiCard).toBeInTheDocument();
+    expect(within(aiCard!).getByText(/chatbots/i)).toBeInTheDocument();
   });
 
   /**
@@ -61,11 +61,11 @@ describe('Services Section Gap Analysis', () => {
     const { container } = render(<ServicesSection />);
 
     const cards = container.querySelectorAll('article');
-    expect(cards.length).toBe(4);
+    expect(cards.length).toBe(6);
 
     cards.forEach((card) => {
       // Background
-      expect(card).toHaveClass('bg-background-elevated');
+      expect(card).toHaveClass('bg-white/5');
       // Border radius
       expect(card).toHaveClass('rounded-2xl');
       // Scale transform base
@@ -83,7 +83,7 @@ describe('Services Section Gap Analysis', () => {
     render(<ServicesSection />);
 
     // Get the section
-    const section = screen.getByRole('region', { name: /productos digitales/i });
+    const section = screen.getByRole('region', { name: /custom solutions/i });
 
     // Get h2 within section
     const h2 = within(section).getByRole('heading', { level: 2 });
@@ -91,14 +91,16 @@ describe('Services Section Gap Analysis', () => {
 
     // Get all h3 headings within section
     const h3Headings = within(section).getAllByRole('heading', { level: 3 });
-    expect(h3Headings).toHaveLength(4);
+    expect(h3Headings).toHaveLength(6);
 
     // Verify each h3 is for a service card
     const expectedTitles = [
-      /desarrollo de software/i,
-      /dise[n|ñ]o de experiencia/i,
-      /integraci[o|ó]n de ia/i,
-      /automatizaci[o|ó]n de procesos/i,
+      /websites that sell/i,
+      /process automation/i,
+      /online stores/i,
+      /applied artificial intelligence/i,
+      /internet of things/i,
+      /management systems/i,
     ];
 
     h3Headings.forEach((h3, index) => {
@@ -131,7 +133,7 @@ describe('Services Section Gap Analysis', () => {
     const { container } = render(<ServicesSection />);
 
     const icons = container.querySelectorAll('svg');
-    expect(icons.length).toBe(4);
+    expect(icons.length).toBe(6);
 
     icons.forEach((icon) => {
       expect(icon).toHaveClass('text-accent-gold');
@@ -142,19 +144,17 @@ describe('Services Section Gap Analysis', () => {
 
   /**
    * Test 6: Section headline matches spec copy exactly
-   * Verifies the exact Spanish headline text from spec
+   * Verifies the exact English headline text from spec
    */
-  it('section headline displays exact Spanish copy from spec', () => {
+  it('section headline displays exact English copy from spec', () => {
     render(<ServicesSection />);
 
     const heading = screen.getByRole('heading', { level: 2 });
 
-    // Verify the full headline text (lowercase as rendered)
-    expect(heading).toHaveTextContent(
-      /dise[n|ñ]amos, construimos y escalamos productos digitales/i
-    );
-    expect(heading).toHaveTextContent(/desde el concepto hasta el lanzamiento/i);
-    expect(heading).toHaveTextContent(/y mas alla/i);
+    // Verify the headline text
+    expect(heading).toHaveTextContent(/software agency/i);
+    expect(heading).toHaveTextContent(/custom solutions/i);
+    expect(heading).toHaveTextContent(/focus on growing/i);
   });
 
   /**
@@ -165,7 +165,7 @@ describe('Services Section Gap Analysis', () => {
     render(<App />);
 
     // Find scroll indicator
-    const scrollLink = screen.getByRole('link', { name: /desplazarse hacia abajo/i });
+    const scrollLink = screen.getByRole('link', { name: /scroll down/i });
     expect(scrollLink).toHaveAttribute('href', '#servicios');
 
     // Verify target exists and has correct structure
@@ -187,7 +187,7 @@ describe('Services Section Gap Analysis', () => {
   it('section uses consistent page background', () => {
     render(<ServicesSection />);
 
-    const section = screen.getByRole('region', { name: /productos digitales/i });
+    const section = screen.getByRole('region', { name: /custom solutions/i });
     expect(section).toHaveClass('bg-background');
   });
 });

@@ -32,7 +32,7 @@ function ContactSection() {
             <div className="h-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.06)] lg:p-10">
               {/* Eyebrow */}
               <p className="text-xs font-medium uppercase tracking-[0.35em] text-white/50">
-                Contacto
+                Contact
               </p>
 
               {/* Title */}
@@ -40,13 +40,13 @@ function ContactSection() {
                 id="contact-heading"
                 className="mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-3xl"
               >
-                Cuéntanos qué necesitas.
+                Tell us what you need.
               </h2>
 
               {/* Description */}
               <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-white/70 sm:text-base">
-                Completa el formulario y te responderemos en menos de 24 horas con ideas claras
-                para tu proyecto.
+                Fill out the form and we'll respond within 24 hours with clear ideas for your
+                project.
               </p>
             </div>
           </div>

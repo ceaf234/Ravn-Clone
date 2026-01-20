@@ -45,7 +45,7 @@ function CustomSelect({
   value,
   onChange,
   options,
-  placeholder = 'Selecciona una opción',
+  placeholder = 'Select an option',
   required = false,
   hasError = false,
   errorId,

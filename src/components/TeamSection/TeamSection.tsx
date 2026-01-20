@@ -8,37 +8,37 @@ import { TeamCard } from '../TeamCard';
 interface TeamMember {
   /** Team member's full name */
   name: string;
-  /** Team member's role/position (Spanish) */
+  /** Team member's role/position */
   role: string;
 }
 
 /**
- * Array of 6 team members with Spanish copy
+ * Array of 6 team members
  */
 const teamMembers: TeamMember[] = [
   {
     name: 'Carlos Alvarado',
-    role: 'Director de Producto',
+    role: 'Product Director',
   },
   {
     name: 'María Fernández',
-    role: 'Directora de Ingeniería',
+    role: 'Engineering Director',
   },
   {
     name: 'Diego Herrera',
-    role: 'Líder de Infraestructura',
+    role: 'Infrastructure Lead',
   },
   {
     name: 'Andrés Morales',
-    role: 'Desarrollador Senior',
+    role: 'Senior Developer',
   },
   {
     name: 'Sofía Castillo',
-    role: 'Desarrolladora Senior',
+    role: 'Senior Developer',
   },
   {
     name: 'Valentina Reyes',
-    role: 'Estratega de Marca',
+    role: 'Brand Strategist',
   },
 ];
 
@@ -51,7 +51,6 @@ const teamMembers: TeamMember[] = [
  * - Responsive grid: 1 column mobile, 2 columns tablet, 3 columns desktop
  * - Data-driven cards mapped from teamMembers array
  * - Anchor target for #equipo navigation
- * - Spanish copy for Guatemalan SMBs
  *
  * @example
  * ```tsx
@@ -72,7 +71,7 @@ function TeamSection() {
         <div className="mb-12 md:mb-16 2xl:mb-20 3xl:mb-24">
           {/* Eyebrow Text */}
           <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6">
-            Nuestro Equipo
+            Our Team
           </p>
 
           {/* Section Headline */}
@@ -80,13 +79,13 @@ function TeamSection() {
             id="team-heading"
             className="mb-4 max-w-3xl text-display-md font-bold leading-[1.1] text-text-primary md:mb-6 2xl:max-w-4xl"
           >
-            Quienes van a trabajar en tu proyecto.
+            The people who will work on your project.
           </h2>
 
           {/* Optional Subtitle */}
           <p className="max-w-2xl text-card-body leading-relaxed text-text-muted">
-            Somos quienes responden tus mensajes, construyen tu software y dan la cara por los
-            resultados.
+            We're the ones who answer your messages, build your software, and stand behind the
+            results.
           </p>
         </div>
 

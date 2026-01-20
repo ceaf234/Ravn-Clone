@@ -16,33 +16,33 @@ export interface ContactFormProps {
 
 /** Service options for the dropdown */
 const serviceOptions: CustomSelectOption[] = [
-  { value: 'Automatizacion de procesos', label: 'Automatización de procesos' },
-  { value: 'Inteligencia artificial', label: 'Inteligencia artificial' },
-  { value: 'Sitio web o landing page', label: 'Sitio web o landing page' },
-  { value: 'Tienda en linea', label: 'Tienda en línea (e-commerce)' },
-  { value: 'Internet de las cosas', label: 'Internet de las cosas (IoT)' },
-  { value: 'Sistema de gestion', label: 'Sistema de gestión (CRM/ERP)' },
-  { value: 'Otro', label: 'Otro / Aún no sé' },
+  { value: 'Process automation', label: 'Process Automation' },
+  { value: 'Artificial intelligence', label: 'Artificial Intelligence' },
+  { value: 'Website or landing page', label: 'Website or Landing Page' },
+  { value: 'Online store', label: 'Online Store (E-commerce)' },
+  { value: 'Internet of things', label: 'Internet of Things (IoT)' },
+  { value: 'Management system', label: 'Management System (CRM/ERP)' },
+  { value: 'Other', label: 'Other / Not sure yet' },
 ];
 
 /** Budget options for the dropdown */
 const budgetOptions: CustomSelectOption[] = [
-  { value: 'Menos de $1,000', label: 'Menos de $1,000' },
+  { value: 'Under $1,000', label: 'Under $1,000' },
   { value: '$1,000-$5,000', label: '$1,000 - $5,000' },
   { value: '$5,000-$10,000', label: '$5,000 - $10,000' },
   { value: '$10,000+', label: '$10,000+' },
-  { value: 'Aun no tengo definido', label: 'Aún no tengo definido' },
+  { value: 'Not yet defined', label: 'Not yet defined' },
 ];
 
 /** Initial empty form state */
 const initialFormData: ContactFormData = {
-  nombre: '',
-  telefono: '',
-  correo: '',
-  empresa: '',
-  servicio: '',
-  presupuesto: '',
-  mensaje: '',
+  name: '',
+  phone: '',
+  email: '',
+  company: '',
+  service: '',
+  budget: '',
+  message: '',
 };
 
 /** Shared input field styles - compact version */
@@ -59,12 +59,12 @@ const errorTextStyles = 'mt-1 text-xs text-red-400';
 
 /**
  * ContactForm is a reusable contact form component with 7 required fields,
- * honeypot spam prevention, and Spanish labels and error messages.
+ * honeypot spam prevention, and English labels and error messages.
  *
  * Features:
  * - 2-column grid layout on sm+, single column on mobile
  * - Custom styled dropdowns matching the site's design
- * - All fields have Spanish labels and validation messages
+ * - All fields have English labels and validation messages
  * - Honeypot field prevents bot submissions
  * - Toast notification on successful submission
  * - Accessible with proper ARIA attributes
@@ -169,7 +169,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
     <>
       {/* Form Card Container (conditional) */}
       <div className={`${cardClasses} ${className}`.trim()}>
-        <form onSubmit={handleSubmit} noValidate aria-label="Formulario de contacto">
+        <form onSubmit={handleSubmit} noValidate aria-label="Contact form">
           {/* Honeypot field - hidden from users, visible to bots */}
           <div className="sr-only" aria-hidden="true">
             <label htmlFor="website">Website</label>
@@ -186,171 +186,171 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
 
           {/* Form Grid - 2 columns on sm+ */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {/* Row 1: Nombre, Correo */}
+            {/* Row 1: Name, Email */}
             <div>
-              <label htmlFor="nombre" className={labelStyles}>
-                Nombre <span className={requiredStyles}>*</span>
+              <label htmlFor="name" className={labelStyles}>
+                Name <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="text"
-                id="nombre"
-                name="nombre"
-                value={formData.nombre}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
-                className={getInputClasses('nombre')}
-                placeholder="Tu nombre completo"
+                className={getInputClasses('name')}
+                placeholder="Your full name"
                 aria-required="true"
-                aria-invalid={!!errors.nombre}
-                aria-describedby={errors.nombre ? 'nombre-error' : undefined}
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? 'name-error' : undefined}
                 minLength={2}
                 maxLength={100}
               />
-              {errors.nombre && (
-                <p id="nombre-error" className={errorTextStyles} role="alert">
-                  {errors.nombre}
+              {errors.name && (
+                <p id="name-error" className={errorTextStyles} role="alert">
+                  {errors.name}
                 </p>
               )}
             </div>
 
             <div>
-              <label htmlFor="correo" className={labelStyles}>
-                Correo electrónico <span className={requiredStyles}>*</span>
+              <label htmlFor="email" className={labelStyles}>
+                Email <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="email"
-                id="correo"
-                name="correo"
-                value={formData.correo}
+                id="email"
+                name="email"
+                value={formData.email}
                 onChange={handleInputChange}
-                className={getInputClasses('correo')}
-                placeholder="tu@correo.com"
+                className={getInputClasses('email')}
+                placeholder="you@email.com"
                 aria-required="true"
-                aria-invalid={!!errors.correo}
-                aria-describedby={errors.correo ? 'correo-error' : undefined}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
-              {errors.correo && (
-                <p id="correo-error" className={errorTextStyles} role="alert">
-                  {errors.correo}
+              {errors.email && (
+                <p id="email-error" className={errorTextStyles} role="alert">
+                  {errors.email}
                 </p>
               )}
             </div>
 
-            {/* Row 2: Telefono, Empresa */}
+            {/* Row 2: Phone, Company */}
             <div>
-              <label htmlFor="telefono" className={labelStyles}>
-                Teléfono <span className={requiredStyles}>*</span>
+              <label htmlFor="phone" className={labelStyles}>
+                Phone <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="tel"
-                id="telefono"
-                name="telefono"
-                value={formData.telefono}
+                id="phone"
+                name="phone"
+                value={formData.phone}
                 onChange={handleInputChange}
-                className={getInputClasses('telefono')}
-                placeholder="(502) 1234-5678"
+                className={getInputClasses('phone')}
+                placeholder="(555) 123-4567"
                 aria-required="true"
-                aria-invalid={!!errors.telefono}
-                aria-describedby={errors.telefono ? 'telefono-error' : undefined}
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
               />
-              {errors.telefono && (
-                <p id="telefono-error" className={errorTextStyles} role="alert">
-                  {errors.telefono}
+              {errors.phone && (
+                <p id="phone-error" className={errorTextStyles} role="alert">
+                  {errors.phone}
                 </p>
               )}
             </div>
 
             <div>
-              <label htmlFor="empresa" className={labelStyles}>
-                Empresa <span className={requiredStyles}>*</span>
+              <label htmlFor="company" className={labelStyles}>
+                Company <span className={requiredStyles}>*</span>
               </label>
               <input
                 type="text"
-                id="empresa"
-                name="empresa"
-                value={formData.empresa}
+                id="company"
+                name="company"
+                value={formData.company}
                 onChange={handleInputChange}
-                className={getInputClasses('empresa')}
-                placeholder="Nombre de tu empresa"
+                className={getInputClasses('company')}
+                placeholder="Your company name"
                 aria-required="true"
-                aria-invalid={!!errors.empresa}
-                aria-describedby={errors.empresa ? 'empresa-error' : undefined}
+                aria-invalid={!!errors.company}
+                aria-describedby={errors.company ? 'company-error' : undefined}
                 minLength={2}
                 maxLength={150}
               />
-              {errors.empresa && (
-                <p id="empresa-error" className={errorTextStyles} role="alert">
-                  {errors.empresa}
+              {errors.company && (
+                <p id="company-error" className={errorTextStyles} role="alert">
+                  {errors.company}
                 </p>
               )}
             </div>
 
-            {/* Row 3: Servicio, Presupuesto (Custom Dropdowns) */}
+            {/* Row 3: Service, Budget (Custom Dropdowns) */}
             <div>
-              <label htmlFor="servicio" className={labelStyles}>
-                ¿Cómo podemos ayudarte? <span className={requiredStyles}>*</span>
+              <label htmlFor="service" className={labelStyles}>
+                How can we help you? <span className={requiredStyles}>*</span>
               </label>
               <CustomSelect
-                id="servicio"
-                name="servicio"
-                value={formData.servicio}
-                onChange={(value) => handleSelectChange('servicio', value)}
+                id="service"
+                name="service"
+                value={formData.service}
+                onChange={(value) => handleSelectChange('service', value)}
                 options={serviceOptions}
-                placeholder="Selecciona un servicio"
+                placeholder="Select a service"
                 required
-                hasError={!!errors.servicio}
-                errorId={errors.servicio ? 'servicio-error' : undefined}
+                hasError={!!errors.service}
+                errorId={errors.service ? 'service-error' : undefined}
               />
-              {errors.servicio && (
-                <p id="servicio-error" className={errorTextStyles} role="alert">
-                  {errors.servicio}
+              {errors.service && (
+                <p id="service-error" className={errorTextStyles} role="alert">
+                  {errors.service}
                 </p>
               )}
             </div>
 
             <div>
-              <label htmlFor="presupuesto" className={labelStyles}>
-                Presupuesto <span className={requiredStyles}>*</span>
+              <label htmlFor="budget" className={labelStyles}>
+                Budget <span className={requiredStyles}>*</span>
               </label>
               <CustomSelect
-                id="presupuesto"
-                name="presupuesto"
-                value={formData.presupuesto}
-                onChange={(value) => handleSelectChange('presupuesto', value)}
+                id="budget"
+                name="budget"
+                value={formData.budget}
+                onChange={(value) => handleSelectChange('budget', value)}
                 options={budgetOptions}
-                placeholder="Selecciona un rango"
+                placeholder="Select a range"
                 required
-                hasError={!!errors.presupuesto}
-                errorId={errors.presupuesto ? 'presupuesto-error' : undefined}
+                hasError={!!errors.budget}
+                errorId={errors.budget ? 'budget-error' : undefined}
               />
-              {errors.presupuesto && (
-                <p id="presupuesto-error" className={errorTextStyles} role="alert">
-                  {errors.presupuesto}
+              {errors.budget && (
+                <p id="budget-error" className={errorTextStyles} role="alert">
+                  {errors.budget}
                 </p>
               )}
             </div>
 
-            {/* Row 4: Mensaje (Full Width) */}
+            {/* Row 4: Message (Full Width) */}
             <div className="sm:col-span-2">
-              <label htmlFor="mensaje" className={labelStyles}>
-                Cuéntanos sobre tu proyecto <span className={requiredStyles}>*</span>
+              <label htmlFor="message" className={labelStyles}>
+                Tell us about your project <span className={requiredStyles}>*</span>
               </label>
               <textarea
-                id="mensaje"
-                name="mensaje"
-                value={formData.mensaje}
+                id="message"
+                name="message"
+                value={formData.message}
                 onChange={handleInputChange}
-                className={`${getInputClasses('mensaje')} h-auto min-h-[110px] resize-y`}
-                placeholder="Describe brevemente tu proyecto o necesidad..."
+                className={`${getInputClasses('message')} h-auto min-h-[110px] resize-y`}
+                placeholder="Briefly describe your project or needs..."
                 aria-required="true"
-                aria-invalid={!!errors.mensaje}
-                aria-describedby={errors.mensaje ? 'mensaje-error' : undefined}
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? 'message-error' : undefined}
                 minLength={20}
                 maxLength={1000}
                 rows={4}
               />
-              {errors.mensaje && (
-                <p id="mensaje-error" className={errorTextStyles} role="alert">
-                  {errors.mensaje}
+              {errors.message && (
+                <p id="message-error" className={errorTextStyles} role="alert">
+                  {errors.message}
                 </p>
               )}
             </div>
@@ -362,15 +362,15 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
                 variant="primary"
                 className="h-11 w-full rounded-lg font-semibold uppercase tracking-wide"
                 disabled={isSubmitting}
-                ariaLabel={isSubmitting ? 'Enviando formulario...' : 'Enviar formulario de contacto'}
+                ariaLabel={isSubmitting ? 'Submitting form...' : 'Submit contact form'}
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                    Enviando...
+                    Sending...
                   </>
                 ) : (
-                  'Solicitar consulta'
+                  'Request Consultation'
                 )}
               </Button>
             </div>
@@ -380,8 +380,8 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
           <div aria-live="polite" aria-atomic="true" className="sr-only">
             {Object.keys(errors).length > 0 && (
               <p>
-                Hay {Object.keys(errors).length} error{Object.keys(errors).length > 1 ? 'es' : ''} en
-                el formulario
+                There {Object.keys(errors).length === 1 ? 'is' : 'are'} {Object.keys(errors).length}{' '}
+                error{Object.keys(errors).length > 1 ? 's' : ''} in the form
               </p>
             )}
           </div>
@@ -391,7 +391,7 @@ function ContactForm({ onSuccess, className = '', showCard = true }: ContactForm
       {/* Success Toast */}
       {showToast && (
         <Toast
-          message="¡Gracias por contactarnos! Te responderemos pronto."
+          message="Thank you for contacting us! We'll get back to you soon."
           onClose={() => setShowToast(false)}
         />
       )}

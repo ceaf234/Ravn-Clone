@@ -16,7 +16,7 @@ describe('ContactSection', () => {
 
     const heading = screen.getByRole('heading', { level: 2 });
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent(/hablemos sobre tu proyecto/i);
+    expect(heading).toHaveTextContent(/tell us what you need/i);
     expect(heading).toHaveAttribute('id', 'contact-heading');
   });
 
@@ -24,7 +24,7 @@ describe('ContactSection', () => {
     render(<ContactSection />);
 
     // ContactForm should be present - check for its form element
-    const form = screen.getByRole('form', { name: /formulario de contacto/i });
+    const form = screen.getByRole('form', { name: /contact form/i });
     expect(form).toBeInTheDocument();
   });
 

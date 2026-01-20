@@ -14,12 +14,12 @@ describe('HeroSection', () => {
     render(<HeroSection />);
     const headline = screen.getByRole('heading', { level: 1 });
     expect(headline).toBeInTheDocument();
-    expect(headline).toHaveTextContent(/hacemos.*crecer.*negocio.*tecnolog/i);
+    expect(headline).toHaveTextContent(/professional software.*business.*next level/i);
   });
 
   it('renders CTA button that is accessible', () => {
     render(<HeroSection />);
-    const primaryCTA = screen.getByRole('link', { name: /agenda tu llamada/i });
+    const primaryCTA = screen.getByRole('link', { name: /schedule a free consultation/i });
     expect(primaryCTA).toBeInTheDocument();
   });
 

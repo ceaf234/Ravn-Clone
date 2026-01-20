@@ -35,7 +35,7 @@ describe('App Integration', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
     // Find and click the CTA button that opens the modal
-    const ctaButton = screen.getByRole('button', { name: /agenda tu llamada/i });
+    const ctaButton = screen.getByRole('button', { name: /schedule a free consultation/i });
     await user.click(ctaButton);
 
     // Modal should now be visible
@@ -44,7 +44,7 @@ describe('App Integration', () => {
     });
 
     // Close the modal
-    const closeButton = screen.getByRole('button', { name: /cerrar/i });
+    const closeButton = screen.getByRole('button', { name: /close/i });
     await user.click(closeButton);
 
     // Modal should be hidden again
@@ -58,7 +58,7 @@ describe('App Integration', () => {
     render(<App />);
 
     // Find the primary CTA button in the hero
-    const ctaButton = screen.getByRole('button', { name: /agenda tu llamada/i });
+    const ctaButton = screen.getByRole('button', { name: /schedule a free consultation/i });
     expect(ctaButton).toBeInTheDocument();
 
     // Click the CTA button
@@ -68,7 +68,7 @@ describe('App Integration', () => {
     await waitFor(() => {
       const modal = screen.getByRole('dialog');
       expect(modal).toBeInTheDocument();
-      expect(screen.getByText(/agenda tu llamada/i, { selector: 'h2' })).toBeInTheDocument();
+      expect(screen.getByText(/schedule your call/i, { selector: 'h2' })).toBeInTheDocument();
     });
   });
 });

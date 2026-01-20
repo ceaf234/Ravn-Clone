@@ -1,5 +1,5 @@
 /**
- * Form validation utilities with Spanish error messages
+ * Form validation utilities with English error messages
  * for the GravityLabs contact form
  */
 
@@ -14,39 +14,39 @@ export interface ValidationResult {
 }
 
 export interface ContactFormData {
-  nombre: string;
-  telefono: string;
-  correo: string;
-  empresa: string;
-  servicio: string;
-  presupuesto: string;
-  mensaje: string;
+  name: string;
+  phone: string;
+  email: string;
+  company: string;
+  service: string;
+  budget: string;
+  message: string;
 }
 
 /**
  * Validates that a field is not empty
- * @returns Spanish error message or null if valid
+ * @returns Error message or null if valid
  */
 export function validateRequired(value: string, _fieldName: string): string | null {
   if (!value || value.trim() === '') {
-    return 'Este campo es obligatorio';
+    return 'This field is required';
   }
   return null;
 }
 
 /**
  * Validates email format
- * @returns Spanish error message or null if valid
+ * @returns Error message or null if valid
  */
 export function validateEmail(value: string): string | null {
   if (!value || value.trim() === '') {
-    return 'Por favor ingresa un correo electronico valido';
+    return 'Please enter a valid email address';
   }
 
   // Standard email regex pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(value)) {
-    return 'Por favor ingresa un correo electronico valido';
+    return 'Please enter a valid email address';
   }
 
   return null;
@@ -55,17 +55,17 @@ export function validateEmail(value: string): string | null {
 /**
  * Validates phone number format
  * Accepts digits, spaces, dashes, parentheses, and plus sign
- * @returns Spanish error message or null if valid
+ * @returns Error message or null if valid
  */
 export function validatePhone(value: string): string | null {
   if (!value || value.trim() === '') {
-    return 'Por favor ingresa un numero de telefono valido';
+    return 'Please enter a valid phone number';
   }
 
   // Pattern accepts digits, spaces, dashes, parentheses, and plus sign
   const phonePattern = /^[\d\s\-()+ ]+$/;
   if (!phonePattern.test(value)) {
-    return 'Por favor ingresa un numero de telefono valido';
+    return 'Please enter a valid phone number';
   }
 
   return null;
@@ -73,22 +73,22 @@ export function validatePhone(value: string): string | null {
 
 /**
  * Validates minimum length of a field
- * @returns Spanish error message or null if valid
+ * @returns Error message or null if valid
  */
 export function validateMinLength(value: string, min: number, fieldName: string): string | null {
   if (value.length < min) {
-    return `El campo ${fieldName} debe tener al menos ${min} caracteres`;
+    return `The ${fieldName} field must be at least ${min} characters`;
   }
   return null;
 }
 
 /**
  * Validates maximum length of a field
- * @returns Spanish error message or null if valid
+ * @returns Error message or null if valid
  */
 export function validateMaxLength(value: string, max: number, fieldName: string): string | null {
   if (value.length > max) {
-    return `El campo ${fieldName} no puede exceder ${max} caracteres`;
+    return `The ${fieldName} field cannot exceed ${max} characters`;
   }
   return null;
 }
@@ -100,72 +100,72 @@ export function validateMaxLength(value: string, max: number, fieldName: string)
 export function validateContactForm(formData: ContactFormData): ValidationResult {
   const errors: FormFieldError[] = [];
 
-  // Validate nombre
-  const nombreRequired = validateRequired(formData.nombre, 'Nombre');
-  if (nombreRequired) {
-    errors.push({ field: 'nombre', message: nombreRequired });
+  // Validate name
+  const nameRequired = validateRequired(formData.name, 'Name');
+  if (nameRequired) {
+    errors.push({ field: 'name', message: nameRequired });
   } else {
-    const nombreMinLength = validateMinLength(formData.nombre, 2, 'Nombre');
-    if (nombreMinLength) {
-      errors.push({ field: 'nombre', message: nombreMinLength });
+    const nameMinLength = validateMinLength(formData.name, 2, 'Name');
+    if (nameMinLength) {
+      errors.push({ field: 'name', message: nameMinLength });
     }
-    const nombreMaxLength = validateMaxLength(formData.nombre, 100, 'Nombre');
-    if (nombreMaxLength) {
-      errors.push({ field: 'nombre', message: nombreMaxLength });
+    const nameMaxLength = validateMaxLength(formData.name, 100, 'Name');
+    if (nameMaxLength) {
+      errors.push({ field: 'name', message: nameMaxLength });
     }
   }
 
-  // Validate telefono
-  const telefonoError = validatePhone(formData.telefono);
-  if (telefonoError) {
-    errors.push({ field: 'telefono', message: telefonoError });
+  // Validate phone
+  const phoneError = validatePhone(formData.phone);
+  if (phoneError) {
+    errors.push({ field: 'phone', message: phoneError });
   }
 
-  // Validate correo
-  const correoError = validateEmail(formData.correo);
-  if (correoError) {
-    errors.push({ field: 'correo', message: correoError });
+  // Validate email
+  const emailError = validateEmail(formData.email);
+  if (emailError) {
+    errors.push({ field: 'email', message: emailError });
   }
 
-  // Validate empresa
-  const empresaRequired = validateRequired(formData.empresa, 'Nombre de Empresa');
-  if (empresaRequired) {
-    errors.push({ field: 'empresa', message: empresaRequired });
+  // Validate company
+  const companyRequired = validateRequired(formData.company, 'Company');
+  if (companyRequired) {
+    errors.push({ field: 'company', message: companyRequired });
   } else {
-    const empresaMinLength = validateMinLength(formData.empresa, 2, 'Nombre de Empresa');
-    if (empresaMinLength) {
-      errors.push({ field: 'empresa', message: empresaMinLength });
+    const companyMinLength = validateMinLength(formData.company, 2, 'Company');
+    if (companyMinLength) {
+      errors.push({ field: 'company', message: companyMinLength });
     }
-    const empresaMaxLength = validateMaxLength(formData.empresa, 150, 'Nombre de Empresa');
-    if (empresaMaxLength) {
-      errors.push({ field: 'empresa', message: empresaMaxLength });
+    const companyMaxLength = validateMaxLength(formData.company, 150, 'Company');
+    if (companyMaxLength) {
+      errors.push({ field: 'company', message: companyMaxLength });
     }
   }
 
-  // Validate servicio
-  const servicioRequired = validateRequired(formData.servicio, 'Servicio');
-  if (servicioRequired) {
-    errors.push({ field: 'servicio', message: servicioRequired });
+  // Validate service
+  const serviceRequired = validateRequired(formData.service, 'Service');
+  if (serviceRequired) {
+    errors.push({ field: 'service', message: serviceRequired });
   }
 
-  // Validate presupuesto
-  const presupuestoRequired = validateRequired(formData.presupuesto, 'Presupuesto');
-  if (presupuestoRequired) {
-    errors.push({ field: 'presupuesto', message: presupuestoRequired });
+  // Validate budget
+  const budgetRequired = validateRequired(formData.budget, 'Budget');
+  if (budgetRequired) {
+    errors.push({ field: 'budget', message: budgetRequired });
   }
 
-  // Validate mensaje
-  const mensajeRequired = validateRequired(formData.mensaje, 'Mensaje');
-  if (mensajeRequired) {
-    errors.push({ field: 'mensaje', message: mensajeRequired });
+  // Validate message
+  const messageRequired = validateRequired(formData.message, 'Message');
+  if (messageRequired) {
+    errors.push({ field: 'message', message: messageRequired });
   } else {
-    const mensajeMinLength = validateMinLength(formData.mensaje, 20, 'Mensaje');
-    if (mensajeMinLength) {
-      errors.push({ field: 'mensaje', message: mensajeMinLength });
+    const messageMinLength = validateMinLength(formData.message, 20, 'Message');
+    if (messageMinLength) {
+      errors.push({ field: 'message', message: messageMinLength });
     }
-    const mensajeMaxLength = validateMaxLength(formData.mensaje, 1000, 'Mensaje');
-    if (mensajeMaxLength) {
-      errors.push({ field: 'mensaje', message: mensajeMaxLength });
+    const messageMaxLength = validateMaxLength(formData.message, 1000, 'Message');
+    if (messageMaxLength) {
+      errors.push({ field: 'message', message: messageMaxLength });
     }
   }
 

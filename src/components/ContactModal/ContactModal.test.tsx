@@ -72,7 +72,7 @@ describe('ContactModal', () => {
     expect(dialog).toBeInTheDocument();
 
     // There should be a close button
-    const closeButton = screen.getByRole('button', { name: /cerrar/i });
+    const closeButton = screen.getByRole('button', { name: /close/i });
     expect(closeButton).toBeInTheDocument();
 
     // Tab through elements - they should stay within the modal

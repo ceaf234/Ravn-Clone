@@ -16,9 +16,9 @@ describe('Toast', () => {
 
   it('renders with message content', () => {
     const onClose = vi.fn();
-    render(<Toast message="Gracias por contactarnos" onClose={onClose} />);
+    render(<Toast message="Thank you for contacting us" onClose={onClose} />);
 
-    expect(screen.getByText('Gracias por contactarnos')).toBeInTheDocument();
+    expect(screen.getByText('Thank you for contacting us')).toBeInTheDocument();
   });
 
   it('auto-dismisses after 5 seconds by default', () => {
@@ -38,7 +38,7 @@ describe('Toast', () => {
     const onClose = vi.fn();
     render(<Toast message="Manual close test" onClose={onClose} />);
 
-    const closeButton = screen.getByRole('button', { name: /cerrar notificacion/i });
+    const closeButton = screen.getByRole('button', { name: /close notification/i });
 
     await act(async () => {
       closeButton.click();

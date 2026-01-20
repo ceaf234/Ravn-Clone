@@ -122,14 +122,14 @@ function ContactModal({ isOpen, onClose }: ContactModalProps) {
             id="modal-title"
             className="text-xl font-bold text-text-primary 2xl:text-2xl 3xl:text-3xl"
           >
-            Agenda tu llamada
+            Schedule Your Call
           </h2>
           <button
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
             className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-white/10 hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
-            aria-label="Cerrar modal"
+            aria-label="Close modal"
           >
             <X className="h-6 w-6 2xl:h-7 2xl:w-7" aria-hidden="true" />
           </button>

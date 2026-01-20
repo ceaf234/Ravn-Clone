@@ -25,10 +25,10 @@ describe('Services Section Integration', () => {
     const heroSection = screen.getByRole('main');
     expect(heroSection).toBeInTheDocument();
     const heroHeadline = within(heroSection).getByRole('heading', { level: 1 });
-    expect(heroHeadline).toHaveTextContent(/hacemos.*crecer.*negocio.*tecnolog/i);
+    expect(heroHeadline).toHaveTextContent(/professional software.*business.*next level/i);
 
     // Verify ServicesSection is present (region with h2)
-    const servicesSection = screen.getByRole('region', { name: /productos digitales/i });
+    const servicesSection = screen.getByRole('region', { name: /custom solutions/i });
     expect(servicesSection).toBeInTheDocument();
     expect(servicesSection).toHaveAttribute('id', 'servicios');
 
@@ -48,7 +48,7 @@ describe('Services Section Integration', () => {
 
     // Find the scroll indicator in hero section
     const scrollIndicator = screen.getByRole('link', {
-      name: /desplazarse hacia abajo/i,
+      name: /scroll down/i,
     });
     expect(scrollIndicator).toBeInTheDocument();
     expect(scrollIndicator).toHaveAttribute('href', '#servicios');
@@ -78,12 +78,12 @@ describe('Services Section Integration', () => {
     expect(h2Headings.length).toBeGreaterThanOrEqual(1);
 
     // h1 should contain hero headline text
-    expect(h1Headings[0]).toHaveTextContent(/hacemos.*crecer.*negocio.*tecnolog/i);
+    expect(h1Headings[0]).toHaveTextContent(/professional software.*business.*next level/i);
 
     // First h2 should be the services section heading
     const servicesHeading = screen.getByRole('heading', {
       level: 2,
-      name: /productos digitales/i,
+      name: /custom solutions/i,
     });
     expect(servicesHeading).toBeInTheDocument();
     expect(servicesHeading).toHaveAttribute('id', 'services-heading');

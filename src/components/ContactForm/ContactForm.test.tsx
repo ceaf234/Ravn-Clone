@@ -14,21 +14,21 @@ describe('ContactForm', () => {
     vi.useRealTimers();
   });
 
-  it('renders all 7 required fields with Spanish labels', () => {
+  it('renders all 7 required fields with English labels', () => {
     render(<ContactForm />);
 
-    // Text inputs - accessible names with accents
-    expect(screen.getByRole('textbox', { name: /nombre/i })).toBeInTheDocument();
-    expect(screen.getByRole('textbox', { name: /tel[eé]fono/i })).toBeInTheDocument();
-    expect(screen.getByRole('textbox', { name: /correo/i })).toBeInTheDocument();
-    expect(screen.getByRole('textbox', { name: /empresa/i })).toBeInTheDocument();
+    // Text inputs - accessible names
+    expect(screen.getByRole('textbox', { name: /name/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: /phone/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: /email/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: /company/i })).toBeInTheDocument();
 
     // Custom select dropdowns (combobox role)
-    expect(screen.getByRole('combobox', { name: /c[oó]mo podemos ayudarte/i })).toBeInTheDocument();
-    expect(screen.getByRole('combobox', { name: /presupuesto/i })).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: /how can we help you/i })).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: /budget/i })).toBeInTheDocument();
 
     // Textarea
-    expect(screen.getByRole('textbox', { name: /cu[eé]ntanos sobre tu proyecto/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: /tell us about your project/i })).toBeInTheDocument();
   });
 
   it('shows validation errors for empty required fields on submit attempt', async () => {
@@ -36,18 +36,18 @@ describe('ContactForm', () => {
     const user = userEvent.setup();
     render(<ContactForm />);
 
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getAllByText(/este campo es obligatorio/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/this field is required/i).length).toBeGreaterThan(0);
     });
   });
 
   it('has submit button that is present in the form', () => {
     render(<ContactForm />);
 
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     expect(submitButton).toBeInTheDocument();
     expect(submitButton).toHaveAttribute('type', 'submit');
   });
@@ -61,31 +61,31 @@ describe('ContactForm', () => {
     render(<ContactForm onSuccess={onSuccess} />);
 
     // Fill in all required text fields
-    await user.type(screen.getByRole('textbox', { name: /nombre/i }), 'Carlos Alvarez');
-    await user.type(screen.getByRole('textbox', { name: /tel[eé]fono/i }), '1234 5678');
-    await user.type(screen.getByRole('textbox', { name: /correo/i }), 'carlos@example.com');
-    await user.type(screen.getByRole('textbox', { name: /empresa/i }), 'Mi Empresa S.A.');
+    await user.type(screen.getByRole('textbox', { name: /name/i }), 'Carlos Alvarez');
+    await user.type(screen.getByRole('textbox', { name: /phone/i }), '1234 5678');
+    await user.type(screen.getByRole('textbox', { name: /email/i }), 'carlos@example.com');
+    await user.type(screen.getByRole('textbox', { name: /company/i }), 'My Company Inc.');
 
     // Select from custom dropdowns
-    const servicioDropdown = screen.getByRole('combobox', { name: /c[oó]mo podemos ayudarte/i });
-    await user.click(servicioDropdown);
-    await user.click(screen.getByRole('option', { name: /desarrollo de software/i }));
+    const serviceDropdown = screen.getByRole('combobox', { name: /how can we help you/i });
+    await user.click(serviceDropdown);
+    await user.click(screen.getByRole('option', { name: /process automation/i }));
 
-    const presupuestoDropdown = screen.getByRole('combobox', { name: /presupuesto/i });
-    await user.click(presupuestoDropdown);
+    const budgetDropdown = screen.getByRole('combobox', { name: /budget/i });
+    await user.click(budgetDropdown);
     await user.click(screen.getByRole('option', { name: /\$1,000.*\$5,000/i }));
 
     await user.type(
-      screen.getByRole('textbox', { name: /cu[eé]ntanos sobre tu proyecto/i }),
-      'Este es un mensaje de prueba con mas de veinte caracteres para pasar la validacion.'
+      screen.getByRole('textbox', { name: /tell us about your project/i }),
+      'This is a test message with more than twenty characters to pass the validation.'
     );
 
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     await waitFor(() => {
       expect(consoleSpy).toHaveBeenCalled();
-      expect(screen.getByText(/gracias por contactarnos/i)).toBeInTheDocument();
+      expect(screen.getByText(/thank you for contacting us/i)).toBeInTheDocument();
     });
 
     consoleSpy.mockRestore();
@@ -104,23 +104,23 @@ describe('ContactForm', () => {
     expect(honeypotField?.parentElement).toHaveClass('sr-only');
 
     // Fill in all required text fields
-    await user.type(screen.getByRole('textbox', { name: /nombre/i }), 'Bot User');
-    await user.type(screen.getByRole('textbox', { name: /tel[eé]fono/i }), '1234 5678');
-    await user.type(screen.getByRole('textbox', { name: /correo/i }), 'bot@example.com');
-    await user.type(screen.getByRole('textbox', { name: /empresa/i }), 'Bot Company');
+    await user.type(screen.getByRole('textbox', { name: /name/i }), 'Bot User');
+    await user.type(screen.getByRole('textbox', { name: /phone/i }), '1234 5678');
+    await user.type(screen.getByRole('textbox', { name: /email/i }), 'bot@example.com');
+    await user.type(screen.getByRole('textbox', { name: /company/i }), 'Bot Company');
 
     // Select from custom dropdowns
-    const servicioDropdown = screen.getByRole('combobox', { name: /c[oó]mo podemos ayudarte/i });
-    await user.click(servicioDropdown);
-    await user.click(screen.getByRole('option', { name: /desarrollo de software/i }));
+    const serviceDropdown = screen.getByRole('combobox', { name: /how can we help you/i });
+    await user.click(serviceDropdown);
+    await user.click(screen.getByRole('option', { name: /process automation/i }));
 
-    const presupuestoDropdown = screen.getByRole('combobox', { name: /presupuesto/i });
-    await user.click(presupuestoDropdown);
+    const budgetDropdown = screen.getByRole('combobox', { name: /budget/i });
+    await user.click(budgetDropdown);
     await user.click(screen.getByRole('option', { name: /\$1,000.*\$5,000/i }));
 
     await user.type(
-      screen.getByRole('textbox', { name: /cu[eé]ntanos sobre tu proyecto/i }),
-      'Este es un mensaje de prueba con mas de veinte caracteres.'
+      screen.getByRole('textbox', { name: /tell us about your project/i }),
+      'This is a test message with more than twenty characters.'
     );
 
     // Fill the honeypot field (simulating a bot)
@@ -128,7 +128,7 @@ describe('ContactForm', () => {
       await user.type(honeypotField as HTMLInputElement, 'http://spam.com');
     }
 
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     await waitFor(() => {
@@ -146,32 +146,32 @@ describe('ContactForm', () => {
     render(<ContactForm />);
 
     // Fill in all required text fields
-    const nombreInput = screen.getByRole('textbox', { name: /nombre/i });
-    await user.type(nombreInput, 'Carlos Alvarez');
-    await user.type(screen.getByRole('textbox', { name: /tel[eé]fono/i }), '1234 5678');
-    await user.type(screen.getByRole('textbox', { name: /correo/i }), 'carlos@example.com');
-    await user.type(screen.getByRole('textbox', { name: /empresa/i }), 'Mi Empresa S.A.');
+    const nameInput = screen.getByRole('textbox', { name: /name/i });
+    await user.type(nameInput, 'Carlos Alvarez');
+    await user.type(screen.getByRole('textbox', { name: /phone/i }), '1234 5678');
+    await user.type(screen.getByRole('textbox', { name: /email/i }), 'carlos@example.com');
+    await user.type(screen.getByRole('textbox', { name: /company/i }), 'My Company Inc.');
 
     // Select from custom dropdowns
-    const servicioDropdown = screen.getByRole('combobox', { name: /c[oó]mo podemos ayudarte/i });
-    await user.click(servicioDropdown);
-    await user.click(screen.getByRole('option', { name: /desarrollo de software/i }));
+    const serviceDropdown = screen.getByRole('combobox', { name: /how can we help you/i });
+    await user.click(serviceDropdown);
+    await user.click(screen.getByRole('option', { name: /process automation/i }));
 
-    const presupuestoDropdown = screen.getByRole('combobox', { name: /presupuesto/i });
-    await user.click(presupuestoDropdown);
+    const budgetDropdown = screen.getByRole('combobox', { name: /budget/i });
+    await user.click(budgetDropdown);
     await user.click(screen.getByRole('option', { name: /\$1,000.*\$5,000/i }));
 
     await user.type(
-      screen.getByRole('textbox', { name: /cu[eé]ntanos sobre tu proyecto/i }),
-      'Este es un mensaje de prueba con mas de veinte caracteres para pasar la validacion.'
+      screen.getByRole('textbox', { name: /tell us about your project/i }),
+      'This is a test message with more than twenty characters to pass the validation.'
     );
 
-    const submitButton = screen.getByRole('button', { name: /enviar/i });
+    const submitButton = screen.getByRole('button', { name: /submit/i });
     await user.click(submitButton);
 
     await waitFor(() => {
-      // Form should be reset - nombre field should be empty
-      expect(nombreInput).toHaveValue('');
+      // Form should be reset - name field should be empty
+      expect(nameInput).toHaveValue('');
     });
   });
 });

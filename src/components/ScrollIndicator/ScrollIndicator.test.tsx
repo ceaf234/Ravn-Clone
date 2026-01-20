@@ -7,7 +7,7 @@ describe('ScrollIndicator', () => {
     render(<ScrollIndicator />);
     // The scroll indicator is now an accessible link
     const indicator = screen.getByRole('link', {
-      name: /desplazarse hacia abajo/i,
+      name: /scroll down/i,
     });
     expect(indicator).toBeInTheDocument();
     // Check that the parent container has absolute positioning at the bottom
@@ -21,7 +21,7 @@ describe('ScrollIndicator', () => {
   it('respects prefers-reduced-motion by having motion-safe animation classes', () => {
     render(<ScrollIndicator />);
     const indicator = screen.getByRole('link', {
-      name: /desplazarse hacia abajo/i,
+      name: /scroll down/i,
     });
     // The animation class is on the SVG icon inside the link
     const icon = indicator.querySelector('svg');
@@ -31,12 +31,12 @@ describe('ScrollIndicator', () => {
   it('has proper accessibility attributes', () => {
     render(<ScrollIndicator />);
     const indicator = screen.getByRole('link', {
-      name: /desplazarse hacia abajo/i,
+      name: /scroll down/i,
     });
-    // Scroll indicator is an accessible link with Spanish ARIA label
+    // Scroll indicator is an accessible link with English ARIA label
     expect(indicator).toHaveAttribute(
       'aria-label',
-      'Desplazarse hacia abajo para ver mas contenido'
+      'Scroll down to see more content'
     );
     // SVG icon is hidden from assistive technology
     const icon = indicator.querySelector('svg');

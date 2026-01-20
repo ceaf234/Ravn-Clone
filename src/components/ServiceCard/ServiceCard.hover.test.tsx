@@ -39,9 +39,9 @@ describe('ServiceCard Hover Interactions', () => {
     const { container } = render(<ServiceCard {...defaultProps} />);
 
     const card = container.firstChild;
-    // Base state: transparent border (always present to prevent layout shift)
+    // Base state: subtle white border
     expect(card).toHaveClass('border');
-    expect(card).toHaveClass('border-transparent');
+    expect(card).toHaveClass('border-white/10');
     // Hover state: accent border color
     expect(card).toHaveClass('hover:border-accent-gold');
   });

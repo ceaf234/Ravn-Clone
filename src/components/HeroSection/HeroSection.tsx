@@ -31,7 +31,7 @@ function HeroSection({ onOpenModal }: HeroSectionProps) {
             style={{ fontSize: 'clamp(2.2rem, 5.5vw, 10.5rem)' }}
           >
             <TypewriterText
-              text="Software profesional para llevar tu empresa al siguiente nivel."
+              text="Professional software to take your business to the next level."
               speed={52}
               pauseAfterPunctuation={390}
               startDelay={390}
@@ -41,27 +41,27 @@ function HeroSection({ onOpenModal }: HeroSectionProps) {
 
           {/* Subheadline Paragraph - Muted text with max-width for readability */}
           <p className="mb-8 max-w-[60ch] text-sm leading-[1.6] text-text-muted sm:text-base md:mb-10 2xl:text-lg 2xl:mb-12 3xl:mb-14 4xl:text-xl">
-            Creamos sistemas a medida que automatizan tu operación — desde ventas en línea hasta
-            procesos internos con IA.
+            We build custom systems that automate your operations — from online sales to internal
+            processes with AI.
           </p>
 
           {/* CTA Buttons - Primary and secondary actions with responsive scaling */}
           <div
             role="group"
-            aria-label="Acciones principales"
+            aria-label="Primary actions"
             className="flex flex-col gap-4 sm:flex-row sm:gap-5 2xl:gap-6"
           >
             {onOpenModal ? (
               <Button variant="primary" onClick={onOpenModal} className="w-full sm:w-auto">
-                Agenda una consulta gratis
+                Schedule a Free Consultation
               </Button>
             ) : (
               <Button variant="primary" href="#contacto" className="w-full sm:w-auto">
-                Agenda una consulta gratis
+                Schedule a Free Consultation
               </Button>
             )}
             <Button variant="secondary" href="#servicios" className="w-full sm:w-auto">
-              Cómo te ayudamos
+              How We Help
             </Button>
           </div>
         </article>

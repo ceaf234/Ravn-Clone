@@ -71,7 +71,7 @@ describe('ServiceCard', () => {
     const { container } = render(<ServiceCard {...defaultProps} />);
 
     const card = container.firstChild;
-    expect(card).toHaveClass('bg-background-elevated');
+    expect(card).toHaveClass('bg-white/5');
     expect(card).toHaveClass('p-6');
     expect(card).toHaveClass('rounded-2xl');
   });

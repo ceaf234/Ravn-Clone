@@ -18,7 +18,7 @@ export interface ToastProps {
  * @example
  * ```tsx
  * <Toast
- *   message="Gracias por contactarnos"
+ *   message="Thank you for contacting us"
  *   onClose={() => setShowToast(false)}
  *   duration={5000}
  * />
@@ -56,7 +56,7 @@ function Toast({ message, onClose, duration = 5000 }: ToastProps) {
         type="button"
         onClick={handleClose}
         className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-white/10 hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
-        aria-label="Cerrar notificacion"
+        aria-label="Close notification"
       >
         <X className="h-5 w-5 2xl:h-6 2xl:w-6" aria-hidden="true" />
       </button>

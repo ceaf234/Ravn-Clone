@@ -33,15 +33,15 @@ describe('Hero Feature Integration', () => {
     expect(screen.getByRole('link', { name: /gravitylabs/i })).toBeInTheDocument();
 
     // Navigation container in header (Container component renders as nav with aria-label)
-    const mainNav = within(header).getByLabelText(/navegacion principal/i);
+    const mainNav = within(header).getByLabelText(/main navigation/i);
     expect(mainNav).toBeInTheDocument();
 
     // Main headline in hero with typewriter text
     const headline = screen.getByRole('heading', { level: 1 });
-    expect(headline).toHaveTextContent(/hacemos.*crecer.*negocio.*tecnolog/i);
+    expect(headline).toHaveTextContent(/professional software.*business.*next level/i);
 
     // CTA button in hero (renders as button when onOpenModal is provided in App)
-    expect(screen.getByRole('button', { name: /agenda tu llamada/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /schedule a free consultation/i })).toBeInTheDocument();
   });
 
   /**
@@ -53,7 +53,7 @@ describe('Hero Feature Integration', () => {
     render(<App />);
 
     // Open mobile menu
-    const menuButton = screen.getByRole('button', { name: /abrir menu/i });
+    const menuButton = screen.getByRole('button', { name: /open.*menu/i });
     await user.click(menuButton);
 
     // Verify menu is open
@@ -74,11 +74,11 @@ describe('Hero Feature Integration', () => {
     render(<App />);
 
     // Find the skip link
-    const skipLink = screen.getByRole('link', { name: /saltar al contenido/i });
-    expect(skipLink).toHaveAttribute('href', '#main-content');
+    const skipLink = screen.getByRole('link', { name: /skip to main content/i });
+    expect(skipLink).toHaveAttribute('href', '#hero');
 
     // Verify the target element exists with correct id
-    const mainContent = document.getElementById('main-content');
+    const mainContent = document.getElementById('hero');
     expect(mainContent).toBeInTheDocument();
     expect(mainContent).toHaveAttribute('role', 'main');
   });
@@ -111,7 +111,7 @@ describe('Hero Feature Integration', () => {
 
     const heroSection = screen.getByRole('main');
     const subheadline = within(heroSection).getByText(
-      /dise[ñn]amos.*desarrollamos.*software.*inteligencia.*artificial.*modernizar/i
+      /build custom systems.*automate.*operations.*online sales.*internal processes.*AI/i
     );
 
     expect(subheadline).toBeInTheDocument();
@@ -128,7 +128,7 @@ describe('Hero Feature Integration', () => {
     render(<App />);
 
     // Open mobile menu
-    const menuButton = screen.getByRole('button', { name: /abrir menu/i });
+    const menuButton = screen.getByRole('button', { name: /open.*menu/i });
     await user.click(menuButton);
 
     // Verify menu is open
@@ -136,8 +136,8 @@ describe('Hero Feature Integration', () => {
     expect(mobileMenu).toBeInTheDocument();
 
     // Click on a navigation link in the mobile menu
-    const serviciosLink = within(mobileMenu).getByRole('link', { name: /servicios/i });
-    await user.click(serviciosLink);
+    const whatWeDoLink = within(mobileMenu).getByRole('link', { name: /what we do/i });
+    await user.click(whatWeDoLink);
 
     // Menu should be closed after clicking a link
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -151,7 +151,7 @@ describe('Hero Feature Integration', () => {
     render(<App />);
 
     const scrollIndicator = screen.getByRole('link', {
-      name: /desplazarse hacia abajo/i,
+      name: /scroll down/i,
     });
 
     expect(scrollIndicator).toBeInTheDocument();

@@ -15,44 +15,44 @@ interface ServiceData {
 }
 
 /**
- * Array of 6 service offerings with Spanish copy
+ * Array of 6 service offerings
  * Each follows the problem/benefit description pattern
  */
 const services: ServiceData[] = [
   {
-    title: 'Sitios web que venden',
+    title: 'Websites That Sell',
     description:
-      'Diseñamos tu presencia digital para que transmita profesionalismo y convierta visitantes en clientes.',
+      'We design your digital presence to convey professionalism and convert visitors into customers.',
     icon: Globe,
   },
   {
-    title: 'Automatización de procesos',
+    title: 'Process Automation',
     description:
-      'Eliminamos el trabajo repetitivo. Lo que hoy haces en horas, tu sistema lo hará en minutos.',
+      'We eliminate repetitive work. What takes you hours today, your system will do in minutes.',
     icon: Workflow,
   },
   {
-    title: 'Tiendas en línea',
+    title: 'Online Stores',
     description:
-      'Vende 24/7 con una tienda rápida, segura y lista para recibir pagos desde el día uno.',
+      'Sell 24/7 with a fast, secure store ready to accept payments from day one.',
     icon: ShoppingCart,
   },
   {
-    title: 'Inteligencia artificial aplicada',
+    title: 'Applied Artificial Intelligence',
     description:
-      'Chatbots, análisis de datos, asistentes internos — ponemos la IA a trabajar en tu operación real.',
+      'Chatbots, data analysis, internal assistants — we put AI to work in your real operations.',
     icon: Brain,
   },
   {
-    title: 'Internet de las cosas (IoT)',
+    title: 'Internet of Things (IoT)',
     description:
-      'Conecta sensores y dispositivos para monitorear tu operación en tiempo real — desde inventario hasta maquinaria.',
+      'Connect sensors and devices to monitor your operations in real time — from inventory to machinery.',
     icon: Cpu,
   },
   {
-    title: 'Sistemas de gestión (CRM/ERP)',
+    title: 'Management Systems (CRM/ERP)',
     description:
-      'Centraliza clientes, ventas, inventario y finanzas en un solo lugar. Menos Excel, más control.',
+      'Centralize customers, sales, inventory, and finances in one place. Less Excel, more control.',
     icon: Database,
   },
 ];
@@ -65,7 +65,6 @@ const services: ServiceData[] = [
  * - Semantic HTML with section element and proper heading hierarchy
  * - Accessible via aria-labelledby and navigable via #servicios anchor
  * - Responsive grid: 1 column mobile, 2 columns tablet, 3 columns desktop
- * - Spanish copy targeting Guatemalan SMBs
  *
  * @example
  * ```tsx
@@ -87,7 +86,7 @@ function ServicesSection() {
         <div className="mb-12 md:mb-16 2xl:mb-20 3xl:mb-24 4xl:mb-28">
           {/* Eyebrow Text */}
           <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6 3xl:mb-8">
-            En GravityLabs
+            At GravityLabs
           </p>
 
           {/* Section Headline - Progressive max-width for readability */}
@@ -95,8 +94,8 @@ function ServicesSection() {
             id="services-heading"
             className="max-w-3xl text-display-md font-bold leading-[1.1] text-text-primary 2xl:max-w-4xl 3xl:max-w-5xl 4xl:max-w-6xl"
           >
-            Somos la agencia de software que crea soluciones a tu medida que trabajan por ti —
-            mientras tú te enfocas en crecer.
+            We're the software agency that builds custom solutions that work for you — while you
+            focus on growing.
           </h2>
         </div>
 
