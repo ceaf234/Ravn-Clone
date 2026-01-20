@@ -1,6 +1,6 @@
 /**
  * Form validation utilities with English error messages
- * for the GravityLabs contact form
+ * for the NotRavn contact form
  */
 
 export interface FormFieldError {

@@ -86,7 +86,7 @@ function ServicesSection() {
         <div className="mb-12 md:mb-16 2xl:mb-20 3xl:mb-24 4xl:mb-28">
           {/* Eyebrow Text */}
           <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6 3xl:mb-8">
-            At GravityLabs
+            At NotRavn
           </p>
 
           {/* Section Headline - Progressive max-width for readability */}

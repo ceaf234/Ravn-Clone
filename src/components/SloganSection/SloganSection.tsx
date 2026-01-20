@@ -35,7 +35,7 @@ function SloganSection() {
             <div className="p-8 md:p-10 lg:p-12 2xl:p-14 3xl:p-16">
               {/* Eyebrow */}
               <p className="mb-4 text-eyebrow font-medium uppercase tracking-[0.2em] text-text-eyebrow 2xl:mb-6">
-                At Gravity Labs
+                At NotRavn
               </p>
 
               {/* Headline - subtle text shadow for readability */}

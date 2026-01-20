@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Container } from '../layout';
-import GravityLabsLogo from './GravityLabsLogo_SVG.svg';
+import NotRavnLogo from './NotRavnLogo_SVG.svg';
 
 interface NavLink {
   label: string;
@@ -152,11 +152,11 @@ function Header() {
           <a
             href="/"
             className="transition-all duration-300 ease-out hover:opacity-80 focus-visible:rounded-sm"
-            aria-label="GravityLabs - Go to home"
+            aria-label="NotRavn - Go to home"
           >
             <img
-              src={GravityLabsLogo}
-              alt="GravityLabs"
+              src={NotRavnLogo}
+              alt="NotRavn"
               className={`transition-all duration-300 ease-out ${
                 isCompact
                   ? 'h-6 2xl:h-7 4xl:h-8'
@@ -242,8 +242,8 @@ function Header() {
                 {/* Menu Header */}
                 <div className="flex items-center justify-between px-4 py-4">
                   <img
-                    src={GravityLabsLogo}
-                    alt="GravityLabs"
+                    src={NotRavnLogo}
+                    alt="NotRavn"
                     className="h-6"
                     aria-hidden="true"
                   />

@@ -6,7 +6,7 @@ import Header from './Header';
 describe('Header', () => {
   it('renders logo that links to home', () => {
     render(<Header />);
-    const logo = screen.getByRole('link', { name: /gravitylabs/i });
+    const logo = screen.getByRole('link', { name: /notravn/i });
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveAttribute('href', '/');
   });
@@ -49,7 +49,7 @@ describe('Header', () => {
 
     // Second tab should focus logo
     await user.tab();
-    expect(screen.getByRole('link', { name: /gravitylabs/i })).toHaveFocus();
+    expect(screen.getByRole('link', { name: /notravn/i })).toHaveFocus();
 
     // Third tab should focus first nav link
     await user.tab();

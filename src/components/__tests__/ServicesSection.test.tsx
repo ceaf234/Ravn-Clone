@@ -95,7 +95,7 @@ describe('ServicesSection', () => {
   it('displays eyebrow text with correct content', () => {
     render(<ServicesSection />);
 
-    const eyebrow = screen.getByText('At GravityLabs');
+    const eyebrow = screen.getByText('At NotRavn');
     expect(eyebrow).toBeInTheDocument();
     expect(eyebrow).toHaveClass('uppercase');
     expect(eyebrow).toHaveClass('tracking-[0.2em]');

@@ -17,27 +17,27 @@ interface TeamMember {
  */
 const teamMembers: TeamMember[] = [
   {
-    name: 'Carlos Alvarado',
+    name: 'Michael Thompson',
     role: 'Product Director',
   },
   {
-    name: 'María Fernández',
+    name: 'Sarah Mitchell',
     role: 'Engineering Director',
   },
   {
-    name: 'Diego Herrera',
+    name: 'David Chen',
     role: 'Infrastructure Lead',
   },
   {
-    name: 'Andrés Morales',
+    name: 'James Wilson',
     role: 'Senior Developer',
   },
   {
-    name: 'Sofía Castillo',
+    name: 'Emily Rodriguez',
     role: 'Senior Developer',
   },
   {
-    name: 'Valentina Reyes',
+    name: 'Jessica Taylor',
     role: 'Brand Strategist',
   },
 ];

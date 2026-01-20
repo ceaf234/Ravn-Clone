@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/* Custom design tokens for GravityLabs */
+/* Custom design tokens for NotRavn */
 @theme {
   /* Colors - All optimized for WCAG 2.1 AA contrast compliance */
   --color-background: #1a1a1a;

@@ -30,7 +30,7 @@ describe('Hero Feature Integration', () => {
     expect(heroSection).toBeInTheDocument();
 
     // Logo in header
-    expect(screen.getByRole('link', { name: /gravitylabs/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /notravn/i })).toBeInTheDocument();
 
     // Navigation container in header (Container component renders as nav with aria-label)
     const mainNav = within(header).getByLabelText(/main navigation/i);
